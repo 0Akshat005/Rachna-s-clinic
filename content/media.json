@@ -1,0 +1,59 @@
+{
+  "brand": {
+    "src": "/illustrations/logo-reference.webp",
+    "alt": "",
+    "approved": false
+  },
+  "doctor": {
+    "src": "",
+    "alt": "",
+    "approved": false,
+    "caption": ""
+  },
+  "features": {
+    "movement-reference.webp": {
+      "src": "/illustrations/movement-reference.webp",
+      "alt": "Illustrative movement image from the supplied reference",
+      "approved": false,
+      "caption": ""
+    },
+    "spine-reference.webp": {
+      "src": "/illustrations/spine-reference.webp",
+      "alt": "Illustrative stretching image from the supplied reference",
+      "approved": false,
+      "caption": ""
+    },
+    "pilates-reference.webp": {
+      "src": "/illustrations/pilates-reference.webp",
+      "alt": "Illustrative Pilates equipment from the supplied reference",
+      "approved": false,
+      "caption": ""
+    },
+    "strength-reference.webp": {
+      "src": "/illustrations/strength-reference.webp",
+      "alt": "Illustrative exercise equipment from the supplied reference",
+      "approved": false,
+      "caption": ""
+    },
+    "pilates-editorial-reference.webp": {
+      "src": "/illustrations/pilates-editorial-reference.webp",
+      "alt": "Illustrative Pilates equipment from the supplied reference",
+      "approved": false,
+      "caption": ""
+    }
+  },
+  "gallery": [
+    {
+      "src": "",
+      "alt": "",
+      "approved": false,
+      "caption": "Clinic reception & treatment space"
+    },
+    {
+      "src": "",
+      "alt": "",
+      "approved": false,
+      "caption": "Guided assessment & movement"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "Rachana Physiotherapy Clinic",
+  "locality": "Manish Nagar",
+  "city": "Nagpur",
+  "region": "Maharashtra",
+  "postalCode": "440015",
+  "address": "59, Nagar Vikas Society, beside Indian (Allahabad) Bank, near new underpass, Manish Nagar Railway Crossing Road, Manish Nagar, Somalwada, Nagpur, Maharashtra 440015",
+  "phone": "+919209291738",
+  "phoneDisplay": "+91 92092 91738",
+  "whatsapp": "919209291738",
+  "practitioner": {
+    "displayName": "",
+    "title": "",
+    "qualifications": [],
+    "registration": "",
+    "biography": [],
+    "quote": ""
+  },
+  "hours": [],
+  "mapEmbedUrl": "",
+  "approvedLogo": false,
+  "photosApproved": false,
+  "privacyApproved": false,
+  "clinicalContentApproved": false,
+  "referralPolicy": "Please contact the clinic to check whether you need a referral.",
+  "sessionDuration": "Please contact the clinic to confirm the expected duration for your appointment.",
+  "fees": "Please ask the clinic about assessment and follow-up fees before your visit.",
+  "cancellationPolicy": "To change or cancel an appointment, contact the clinic. Confirm the applicable notice period when booking.",
+  "secondaryPhone": "+918460507249",
+  "secondaryPhoneDisplay": "+91 84605 07249",
+  "referenceOpeningHours": [
+    {
+      "days": "Mon–Sat",
+      "sessions": ["8:00 AM–1:00 PM", "4:30 PM–9:00 PM"]
+    },
+    {
+      "days": "Sunday",
+      "sessions": ["8:30 AM–1:00 PM"]
+    }
+  ]
+}
