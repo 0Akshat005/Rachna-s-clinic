@@ -12,7 +12,9 @@ export function pageMetadata(
   title: string,
   description: string,
   pathname: string,
+  image?: { url: string; alt: string },
 ): Metadata {
+  const images = image ? [image] : ogImages;
   return {
     title,
     description,
@@ -24,13 +26,13 @@ export function pageMetadata(
       type: "website",
       locale: "en_IN",
       siteName: clinic.name,
-      images: ogImages,
+      images,
     },
     twitter: {
-      card: ogImages ? "summary_large_image" : "summary",
+      card: images ? "summary_large_image" : "summary",
       title,
       description,
-      images: ogImages?.map((image) => image.url),
+      images: images?.map((img) => img.url),
     },
     robots: { index: indexingEnabled, follow: indexingEnabled },
   };

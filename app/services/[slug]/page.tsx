@@ -7,6 +7,7 @@ import { BookingBanner } from "@/components/booking-banner";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { ServiceCard } from "@/components/service-card";
 import { Icon } from "@/components/icon";
+import media from "@/content/media.json";
 export const dynamicParams = false;
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
@@ -19,11 +20,17 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = services.find((s) => s.slug === slug);
   if (!service) return {};
+  const feature = media.features[service.image as keyof typeof media.features];
+  const image =
+    feature && feature.approved
+      ? { url: feature.src, alt: feature.alt }
+      : undefined;
   return pageMetadata(
     service.name + " in Nagpur",
     service.summary +
       " Explore assessment and first-visit expectations at Rachana, Manish Nagar.",
     "/services/" + slug,
+    image,
   );
 }
 export default async function ServicePage({

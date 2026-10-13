@@ -54,3 +54,14 @@ No real patient information was used. Live provider calls use test doubles. The 
 The full dependency audit reports five high-severity findings along the development-only eslint-config-next → fast-glob → micromatch → braces chain. npm suggests an incompatible Next lint configuration downgrade; it was not applied. Production dependencies audit clean. Recheck for an upstream patch when updating tooling.
 
 Automated checks are evidence, not full WCAG certification. Genuine 200% browser zoom and screen-reader testing, physical-device call/WhatsApp behavior, exact map pin, clinical copy approval, privacy/retention approval, real mail reception and bounce monitoring, custom-domain SEO, Rich Results Test, Search Console and post-launch field performance remain deployment QA items.
+
+## Spine Care image replacement — 13 October 2026
+
+Replaced the Spine Care screenshot crop with the client-supplied square illustration. The original is preserved in assets/source/spine-care-illustration.png and an optimized WebP is served from public/illustrations/spine-care-illustration.webp. The complete image is shown at its 1:1 aspect ratio on desktop and mobile, with descriptive alt text and an illustrative caption. The asset preparation script reproduces the WebP from the saved source.
+
+Production build and TypeScript passed. Browser verification at 390px and 1440px confirmed that the replacement loads, remains square and introduces no horizontal overflow. Both rendered layouts were visually reviewed; screenshots are in artifacts/spine-care-390.png and artifacts/spine-care-1440.png.
+
+## Hijama / Cupping Therapy image addition — 13 October 2026
+
+Replaced the generic fitness equipment placeholder on the Hijama / Cupping Therapy service route with the client-supplied clinical cupping procedure photograph. The original is preserved in assets/source/cupping-therapy.jpg and optimized modern WebP files are saved in public/illustrations/cupping-therapy.webp and public/images/cupping-therapy.webp. The image is rendered with a balanced 1.4 aspect ratio, focal centering on the clinical suction cups, descriptive accessibility alt text, and clinical procedure caption. Open Graph and Twitter metadata for the service route also incorporates this image for rich social sharing previews. Tested at 1440px and 390px viewports; all tests and build pass cleanly.
+

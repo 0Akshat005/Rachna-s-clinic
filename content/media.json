@@ -18,10 +18,11 @@
       "caption": ""
     },
     "spine-reference.webp": {
-      "src": "/illustrations/spine-reference.webp",
-      "alt": "Illustrative stretching image from the supplied reference",
+      "src": "/illustrations/spine-care-illustration.webp",
+      "alt": "Illustration of a person holding their neck and lower back, with a highlighted spine and neck, back, disc health and mobility callouts.",
       "approved": false,
-      "caption": ""
+      "caption": "Illustrative Spine Care graphic supplied by the client",
+      "aspectRatio": 1
     },
     "pilates-reference.webp": {
       "src": "/illustrations/pilates-reference.webp",
@@ -40,6 +41,14 @@
       "alt": "Illustrative Pilates equipment from the supplied reference",
       "approved": false,
       "caption": ""
+    },
+    "cupping-therapy.webp": {
+      "src": "/images/cupping-therapy.webp",
+      "alt": "Clinical cupping therapy procedure with suction cups applied along a patient's back by a practitioner",
+      "approved": true,
+      "caption": "Cupping therapy procedure and clinical technique",
+      "aspectRatio": 1.4,
+      "objectPosition": "center 45%"
     }
   },
   "gallery": [

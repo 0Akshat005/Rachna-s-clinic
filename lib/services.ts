@@ -35,7 +35,7 @@ export const services: Service[] = [
       "Assessment findings and suitable next steps",
     ],
     image: "spine-reference.webp",
-    alt: "Illustrative image of a woman stretching to the side",
+    alt: "Illustration of a person holding their neck and lower back, with a highlighted spine and neck, back, disc health and mobility callouts.",
   },
   {
     slug: "osteopathy-matrix-rhythm-therapy",
@@ -94,8 +94,8 @@ export const services: Service[] = [
       "Practitioner training and suitability checks",
       "Risks, limitations and other options",
     ],
-    image: "pilates-reference.webp",
-    alt: "Illustrative exercise ball and rolled mat",
+    image: "cupping-therapy.webp",
+    alt: "Clinical cupping therapy procedure with suction cups applied along a patient's back by a practitioner",
   },
   {
     slug: "tecar-laser-therapy",

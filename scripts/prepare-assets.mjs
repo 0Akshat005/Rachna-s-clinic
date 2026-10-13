@@ -41,3 +41,18 @@ for (const [source, name, crop] of sources) {
     .webp({ quality: 88 })
     .toFile("public/illustrations/" + name);
 }
+
+// Preserve the complete client-supplied Spine Care illustration.
+await sharp("assets/source/spine-care-illustration.png")
+  .webp({ quality: 92 })
+  .toFile("public/illustrations/spine-care-illustration.webp");
+
+// Preserve the client-supplied Cupping Therapy photo.
+await mkdir("public/images", { recursive: true });
+await sharp("assets/source/cupping-therapy.jpg")
+  .webp({ quality: 90 })
+  .toFile("public/illustrations/cupping-therapy.webp");
+await sharp("assets/source/cupping-therapy.jpg")
+  .webp({ quality: 90 })
+  .toFile("public/images/cupping-therapy.webp");
+

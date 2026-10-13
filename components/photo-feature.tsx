@@ -18,9 +18,18 @@ export function PhotoFeature({
   const selected = media.features[src as keyof typeof media.features];
   const approved = selected?.approved;
   const imageSrc = selected?.src || "/illustrations/" + src;
+  const aspectRatio =
+    selected && "aspectRatio" in selected ? selected.aspectRatio : undefined;
+  const objectPosition =
+    selected && "objectPosition" in selected
+      ? (selected.objectPosition as string)
+      : undefined;
   return (
     <figure className={"photo-feature " + className}>
-      <div className="photo-inner">
+      <div
+        className="photo-inner"
+        style={aspectRatio ? { aspectRatio } : undefined}
+      >
         <Image
           src={imageSrc}
           alt={approved ? selected.alt : alt}
@@ -28,10 +37,12 @@ export function PhotoFeature({
           sizes={sizes}
           preload={priority}
           fetchPriority={priority ? "high" : undefined}
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "cover", objectPosition }}
         />
       </div>
-      <figcaption>{approved ? selected.caption : caption}</figcaption>
+      <figcaption>
+        {approved ? selected.caption : selected?.caption || caption}
+      </figcaption>
     </figure>
   );
 }
