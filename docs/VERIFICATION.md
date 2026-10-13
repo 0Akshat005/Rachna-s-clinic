@@ -83,3 +83,18 @@ The original source and final prompt are preserved in assets/source/hero-physiot
 
 Replaced the generic strengthening equipment placeholder on the TECAR & Laser Therapy service route with the client-supplied clinical laser therapy photograph. The original is preserved in assets/source/tecar-laser-therapy.jpg and optimized modern WebP files are saved in public/illustrations/tecar-laser-therapy.webp and public/images/tecar-laser-therapy.webp (~76.8 KB). The image is framed with a 1.4 aspect ratio and centered focal positioning, descriptive accessibility alt text, and clinical procedure caption. Open Graph and Twitter metadata for the route automatically incorporates this approved asset. Tested at 1440px and 390px viewports; all tests and build pass cleanly.
 
+## Continuous hero blend refinement — 13 October 2026
+
+Replaced the narrow colour overlay with an eased transparency mask that reveals the hero's shared background colour. The photo begins at 38% of the desktop viewport and reaches full opacity before the treatment interaction. Tablet and mobile retain the stacked composition with a short top-edge transition. Responsive image sizes reflect the wider 62vw desktop photo field. The actual image asset is unchanged.
+
+The production build and TypeScript passed. Desktop at 1440px and 1920px and phone at 390px were visually reviewed. The existing responsive-layout and automated accessibility browser checks passed, covering all required homepage widths and all 13 routes on desktop/mobile. The verified older clinic preview was restarted to serve the current CSS.
+
+## Panoramic hero rebuild — 13 October 2026
+
+Current hero: one full-width 1983×793 photographic panorama with a quiet wall for copy on the left and the physiotherapy interaction on the right. The image itself supplies continuous colour, texture and light; previous desktop masks and overlay gradients have been removed. Home hero styles are separated into app/home-hero.css. A server-rendered HeroMedia component uses the installed Next.js art-direction API, native picture sources and mutually exclusive preload media queries. No animation or new client state was added.
+
+Dedicated tablet and phone crops improve local detail and reduce transfer. Network inspection at 390, 768, 1024, 1440 and 1920px showed exactly one matching image request for each viewport. All widths had no horizontal overflow. CTA buttons stay together where space allows, and narrow phone layouts stack them. Text and border contrast were strengthened against the photographed background. Desktop, laptop, tablet and phone screenshots were visually reviewed after image decoding; evidence is in artifacts/final-cinematic-*.png.
+
+The final production build, TypeScript, lint and all 9 browser tests passed. Automated WCAG-tag checks returned no violations on all 13 routes at 390px and 1440px. Existing booking preview, failure handling, service filtering, menu keyboard behavior and canonical paths remained healthy. Other clinic imagery and booking configuration were preserved.
+
+Local Lighthouse mobile: performance 93, accessibility 100, best practices 100, SEO 69. LCP 3.1 s, TBT 110 ms, CLS 0. The SEO score reflects deliberate preview noindex. These are local laboratory measurements rather than field Core Web Vitals. Report: artifacts/lighthouse-cinematic-mobile.json. Earlier sections record previous hero designs and measurements.

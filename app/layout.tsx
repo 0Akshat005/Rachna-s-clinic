@@ -5,6 +5,7 @@ import { clinic, siteUrl, indexingEnabled } from "@/lib/clinic-profile";
 import { localBusinessSchema } from "@/lib/seo";
 import "./globals.css";
 import "./editorial.css";
+import "./home-hero.css";
 import { bodyFont, headingFont } from "./fonts";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

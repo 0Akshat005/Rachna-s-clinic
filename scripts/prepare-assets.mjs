@@ -77,3 +77,27 @@ await sharp("assets/source/tecar-laser-therapy.jpg")
   .webp({ quality: 90 })
   .toFile("public/images/tecar-laser-therapy.webp");
 
+// Panoramic hero: preserve the continuous room and its text-safe wall.
+await sharp("assets/source/hero-cinematic.png")
+  .webp({ quality: 88 })
+  .toFile("public/illustrations/hero-cinematic.webp");
+
+// Encode the same art-directed crops used on smaller screens.
+const heroDimensions = await sharp(
+  "assets/source/hero-cinematic.png",
+).metadata();
+for (const [device, ratio] of [
+  ["mobile", 4 / 3],
+  ["tablet", 1.7],
+]) {
+  const cropWidth = Math.round(heroDimensions.height * ratio);
+  await sharp("assets/source/hero-cinematic.png")
+    .extract({
+      left: heroDimensions.width - cropWidth,
+      top: 0,
+      width: cropWidth,
+      height: heroDimensions.height,
+    })
+    .webp({ quality: 88 })
+    .toFile("public/illustrations/hero-cinematic-" + device + ".webp");
+}

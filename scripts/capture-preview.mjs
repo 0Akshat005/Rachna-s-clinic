@@ -14,6 +14,11 @@ try {
     await page.setViewportSize({ width, height });
     await page.goto("http://localhost:3000" + route);
     await page.evaluate(() => document.fonts.ready);
+    for (const photo of await page
+      .locator(".movement-hero-photo img, .page-hero-photo img")
+      .all()) {
+      await photo.evaluate((node) => node.decode());
+    }
     await page.screenshot({
       path: "artifacts/" + name,
       fullPage: route !== "/",

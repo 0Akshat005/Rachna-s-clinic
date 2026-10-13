@@ -12,11 +12,12 @@
   },
   "features": {
     "movement-reference.webp": {
-      "src": "/illustrations/hero-physiotherapy.webp",
-      "alt": "Illustrative scene of a physiotherapist supporting a seated patient's shoulder movement in a bright treatment room.",
+      "src": "/illustrations/hero-cinematic.webp",
+      "alt": "Illustrative panoramic treatment room with a physiotherapist supporting a seated patient's arm movement.",
       "approved": false,
       "caption": "Illustrative therapy scene · AI-generated",
-      "objectPosition": "62% center"
+      "mobileSrc": "/illustrations/hero-cinematic-mobile.webp",
+      "tabletSrc": "/illustrations/hero-cinematic-tablet.webp"
     },
     "spine-reference.webp": {
       "src": "/illustrations/spine-care-illustration.webp",

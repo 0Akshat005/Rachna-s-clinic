@@ -26,4 +26,12 @@ After replacement, inspect desktop and mobile crops and run the release checker.
 
 The homepage now uses a high-resolution AI-generated illustrative physiotherapy scene, saved as assets/source/hero-physiotherapy.png and optimized into public/illustrations/hero-physiotherapy.webp. The complete built-in generation prompt is recorded in assets/source/hero-physiotherapy-prompt.md. It depicts fictional people and premises and is labelled as an illustrative AI-generated scene; it is not presented as the clinic's staff or facilities. The movement-reference.webp configuration key now points to this new asset. Other supplied service photographs remain unchanged.
 
-The desktop transition is limited to clamp(60px, 7vw, 135px). At widths of 900px or below, copy and image stack with no fade. Tablet uses the full 3:2 image; phone uses a 4:3 crop that keeps both people and the assisted movement visible.
+The current desktop photo starts at 38% of the viewport, with an eased transparency mask across its first 28%. This reveals the same hero background beneath the image rather than painting a narrow opaque overlay, removing the visible vertical seam. People and the guided movement remain in the clear portion of the photograph. At widths of 900px or below, copy and image stack with a short 12px top-edge blend. Tablet uses the full 3:2 image; phone uses a 4:3 crop that keeps both people and the assisted movement visible.
+
+## Current panoramic hero — 13 October 2026
+
+The current homepage uses a single generated panoramic room image behind both the copy and the treatment scene. It has no desktop split panel, opacity mask or horizontal overlay. The room's actual wall, light and texture create continuity. The banner is labelled as AI-generated illustration and does not depict real clinic staff or premises.
+
+Source: assets/source/hero-cinematic.png (1983×793). Final generation prompt: assets/source/hero-cinematic-prompt.md. Optimized desktop, tablet and phone assets are public/illustrations/hero-cinematic.webp, hero-cinematic-tablet.webp (1348×793) and hero-cinematic-mobile.webp (1057×793). Previous assets are retained.
+
+HeroMedia uses the installed Next.js getImageProps API and a native picture element with viewport-specific image hints. Each checked viewport requests exactly one hero image. Tablet and phone use focused crops rather than scaling the entire panorama into a small frame. Future approved photography must update src, tabletSrc and mobileSrc together in content/media.json. The responsive variants are reproducible with npm run prepare:assets.

@@ -36,7 +36,7 @@ Node.js 20.9+ is required. Use Node 22 or a current supported LTS. Fonts are bun
 
 The layout was revised around the supplied finalized homepage inspiration. Marketing pages use a fluid grid with 5% desktop side gutters rather than a centered 1280px cap. Home combines a full-bleed hero image, compact concern navigation, a sage introduction band, numbered service rows, a navy process section, split FAQ/contact sections and a reference-inspired footer with quick links, all seven services, full address, two contact numbers, weekday/Sunday hours and the exact Designed & Developed by BizLeap credit. Mobile adapts to 20px/18px gutters and stacked content. The working booking flow remains available throughout.
 
-Shared foundations live in app/globals.css; the homepage editorial composition lives in app/editorial.css; the expanded footer is scoped in components/site-footer.module.css. The supplied footer screenshot's hours are held separately in clinic.json referenceOpeningHours while approved hours remain pending. Original high-resolution photographs remain a production asset requirement; current photos are labelled illustrative reference crops.
+Shared foundations live in app/globals.css; homepage sections live in app/editorial.css; the panoramic banner lives in app/home-hero.css and components/hero-media.tsx; the expanded footer is scoped in components/site-footer.module.css. The supplied footer screenshot's hours are held separately in clinic.json referenceOpeningHours while approved hours remain pending. Original high-resolution photographs remain a production asset requirement; current photos are labelled illustrative reference crops.
 
 ## Booking modes
 

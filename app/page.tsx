@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Icon } from "@/components/icon";
 import { PhotoFeature } from "@/components/photo-feature";
+import { HeroMedia } from "@/components/hero-media";
 import { CareFinder } from "@/components/care-finder";
 import { DoctorSection } from "@/components/doctor-section";
 import { CareJourney } from "@/components/care-journey";
@@ -19,14 +20,7 @@ export default function Home() {
   return (
     <>
       <section className="movement-hero">
-        <PhotoFeature
-          src="movement-reference.webp"
-          alt="Illustrative scene of a physiotherapist supporting a seated patient’s shoulder movement in a bright treatment room."
-          className="movement-hero-photo"
-          sizes="(max-width: 900px) 100vw, 57vw"
-          caption="Illustrative therapy scene · AI-generated"
-          priority
-        />
+        <HeroMedia />
         <div className="container movement-hero-inner">
           <div className="movement-hero-copy">
             <p className="eyebrow">Physiotherapy & rehabilitation</p>
