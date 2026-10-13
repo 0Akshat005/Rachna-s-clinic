@@ -114,8 +114,8 @@ export const services: Service[] = [
       "Precautions and individual suitability",
       "Other options and when the plan is reviewed",
     ],
-    image: "strength-reference.webp",
-    alt: "Illustrative rehabilitation exercise equipment",
+    image: "tecar-laser-therapy.webp",
+    alt: "Physiotherapist administering targeted laser therapy to a patient's knee using specialized equipment",
   },
   {
     slug: "sports-injury-rehabilitation",

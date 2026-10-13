@@ -21,3 +21,9 @@ Use meaningful plain alt text and a short caption for original photos. Retain or
 The original practitioner name and credentials are purposely not inferred from draft screenshots. Update the approved practitioner fields independently of photography.
 
 After replacement, inspect desktop and mobile crops and run the release checker. The clinic gallery automatically switches to photographs when its configured entries are approved; the About-page doctor slot switches to the supplied portrait. The homepage keeps the compact text introduction from the finalized design. Approved homepage photography is also used in social metadata.
+
+## Homepage hero update — 13 October 2026
+
+The homepage now uses a high-resolution AI-generated illustrative physiotherapy scene, saved as assets/source/hero-physiotherapy.png and optimized into public/illustrations/hero-physiotherapy.webp. The complete built-in generation prompt is recorded in assets/source/hero-physiotherapy-prompt.md. It depicts fictional people and premises and is labelled as an illustrative AI-generated scene; it is not presented as the clinic's staff or facilities. The movement-reference.webp configuration key now points to this new asset. Other supplied service photographs remain unchanged.
+
+The desktop transition is limited to clamp(60px, 7vw, 135px). At widths of 900px or below, copy and image stack with no fade. Tablet uses the full 3:2 image; phone uses a 4:3 crop that keeps both people and the assisted movement visible.

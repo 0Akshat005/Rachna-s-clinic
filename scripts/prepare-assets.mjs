@@ -64,4 +64,16 @@ await sharp("assets/source/dry-needling.jpg")
   .webp({ quality: 90 })
   .toFile("public/images/dry-needling.webp");
 
+// Homepage art direction: a generated illustrative physiotherapy scene.
+await sharp("assets/source/hero-physiotherapy.png")
+  .webp({ quality: 88 })
+  .toFile("public/illustrations/hero-physiotherapy.webp");
+
+// Preserve the client-supplied TECAR & Laser Therapy photo.
+await sharp("assets/source/tecar-laser-therapy.jpg")
+  .webp({ quality: 90 })
+  .toFile("public/illustrations/tecar-laser-therapy.webp");
+await sharp("assets/source/tecar-laser-therapy.jpg")
+  .webp({ quality: 90 })
+  .toFile("public/images/tecar-laser-therapy.webp");
 

@@ -21,10 +21,10 @@ export default function Home() {
       <section className="movement-hero">
         <PhotoFeature
           src="movement-reference.webp"
-          alt="Illustrative image of a woman gently stretching her shoulder"
+          alt="Illustrative scene of a physiotherapist supporting a seated patient’s shoulder movement in a bright treatment room."
           className="movement-hero-photo"
-          sizes="(max-width: 767px) 100vw, 57vw"
-          caption="Illustrative movement image"
+          sizes="(max-width: 900px) 100vw, 57vw"
+          caption="Illustrative therapy scene · AI-generated"
           priority
         />
         <div className="container movement-hero-inner">

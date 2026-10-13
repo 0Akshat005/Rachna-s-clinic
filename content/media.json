@@ -12,10 +12,11 @@
   },
   "features": {
     "movement-reference.webp": {
-      "src": "/illustrations/movement-reference.webp",
-      "alt": "Illustrative movement image from the supplied reference",
+      "src": "/illustrations/hero-physiotherapy.webp",
+      "alt": "Illustrative scene of a physiotherapist supporting a seated patient's shoulder movement in a bright treatment room.",
       "approved": false,
-      "caption": ""
+      "caption": "Illustrative therapy scene · AI-generated",
+      "objectPosition": "62% center"
     },
     "spine-reference.webp": {
       "src": "/illustrations/spine-care-illustration.webp",
@@ -57,6 +58,14 @@
       "caption": "Dry needling procedure and trigger point therapy",
       "aspectRatio": 1.33,
       "objectPosition": "center center"
+    },
+    "tecar-laser-therapy.webp": {
+      "src": "/images/tecar-laser-therapy.webp",
+      "alt": "Physiotherapist administering targeted laser therapy to a patient's knee using specialized equipment",
+      "approved": true,
+      "caption": "Targeted laser and TECAR therapy procedure for joint recovery",
+      "aspectRatio": 1.4,
+      "objectPosition": "center 45%"
     }
   },
   "gallery": [

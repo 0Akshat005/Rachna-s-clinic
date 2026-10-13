@@ -69,4 +69,17 @@ Replaced the generic fitness equipment placeholder on the Hijama / Cupping Thera
 
 Replaced the generic strengthening equipment placeholder on the Dry Needling service route with the client-supplied clinical dry needling photograph with trigger points callout. The original is preserved in assets/source/dry-needling.jpg and optimized modern WebP files are saved in public/illustrations/dry-needling.webp and public/images/dry-needling.webp. The image is rendered with its native 4:3 (1.33) aspect ratio, centered framing, descriptive accessibility alt text, and clinical procedure caption. Open Graph and Twitter metadata for the route automatically utilizes this approved asset. Tested at 1440px and 390px viewports; all tests and build pass cleanly.
 
+## Homepage hero and blend revision — 13 October 2026
+
+Replaced the low-resolution solo stretching image with a 1536×1024 generated illustrative scene showing guided physiotherapy. The optimized WebP is 109,846 bytes. Both people and the treatment interaction stay visible. The desktop edge transition is now 60–135px (7vw within those limits), replacing a wash across 32% of the photograph. At 900px and below the hero stacks; tablet uses the native 3:2 composition and phone uses a 4:3 crop with no fade. Responsive sizes match the breakpoint.
+
+The final production build, TypeScript, lint and all 9 existing browser tests passed. No automated WCAG-tag violations were found across all 13 routes at 390px and 1440px. Homepage geometry was checked at 320, 390, 768, 1024, 1440 and 1920px. Desktop, wide, tablet and mobile renders were visually reviewed. Other service images and the booking backend were preserved. An older Next.js preview from this project was verified by its process command line and replaced; localhost and 127.0.0.1 now serve the same current assets.
+
+Local Lighthouse mobile: performance 96, accessibility 100, best practices 100, SEO 69. LCP 2.8 s, TBT 50 ms, CLS 0. SEO remains reduced by deliberate preview noindex. Results are laboratory measurements, not field Core Web Vitals. Report: artifacts/lighthouse-hero-mobile.json.
+
+The original source and final prompt are preserved in assets/source/hero-physiotherapy.png and assets/source/hero-physiotherapy-prompt.md. The public image is labelled as AI-generated illustration and does not identify invented people or premises as authentic clinic staff/facilities.
+
+## TECAR & Laser Therapy image replacement — 13 October 2026
+
+Replaced the generic strengthening equipment placeholder on the TECAR & Laser Therapy service route with the client-supplied clinical laser therapy photograph. The original is preserved in assets/source/tecar-laser-therapy.jpg and optimized modern WebP files are saved in public/illustrations/tecar-laser-therapy.webp and public/images/tecar-laser-therapy.webp (~76.8 KB). The image is framed with a 1.4 aspect ratio and centered focal positioning, descriptive accessibility alt text, and clinical procedure caption. Open Graph and Twitter metadata for the route automatically incorporates this approved asset. Tested at 1440px and 390px viewports; all tests and build pass cleanly.
 
