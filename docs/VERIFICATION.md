@@ -65,3 +65,8 @@ Production build and TypeScript passed. Browser verification at 390px and 1440px
 
 Replaced the generic fitness equipment placeholder on the Hijama / Cupping Therapy service route with the client-supplied clinical cupping procedure photograph. The original is preserved in assets/source/cupping-therapy.jpg and optimized modern WebP files are saved in public/illustrations/cupping-therapy.webp and public/images/cupping-therapy.webp. The image is rendered with a balanced 1.4 aspect ratio, focal centering on the clinical suction cups, descriptive accessibility alt text, and clinical procedure caption. Open Graph and Twitter metadata for the service route also incorporates this image for rich social sharing previews. Tested at 1440px and 390px viewports; all tests and build pass cleanly.
 
+## Dry Needling image replacement — 13 October 2026
+
+Replaced the generic strengthening equipment placeholder on the Dry Needling service route with the client-supplied clinical dry needling photograph with trigger points callout. The original is preserved in assets/source/dry-needling.jpg and optimized modern WebP files are saved in public/illustrations/dry-needling.webp and public/images/dry-needling.webp. The image is rendered with its native 4:3 (1.33) aspect ratio, centered framing, descriptive accessibility alt text, and clinical procedure caption. Open Graph and Twitter metadata for the route automatically utilizes this approved asset. Tested at 1440px and 390px viewports; all tests and build pass cleanly.
+
+

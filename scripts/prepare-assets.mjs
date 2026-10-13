@@ -56,3 +56,12 @@ await sharp("assets/source/cupping-therapy.jpg")
   .webp({ quality: 90 })
   .toFile("public/images/cupping-therapy.webp");
 
+// Preserve the client-supplied Dry Needling photo.
+await sharp("assets/source/dry-needling.jpg")
+  .webp({ quality: 90 })
+  .toFile("public/illustrations/dry-needling.webp");
+await sharp("assets/source/dry-needling.jpg")
+  .webp({ quality: 90 })
+  .toFile("public/images/dry-needling.webp");
+
+

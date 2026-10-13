@@ -49,6 +49,14 @@
       "caption": "Cupping therapy procedure and clinical technique",
       "aspectRatio": 1.4,
       "objectPosition": "center 45%"
+    },
+    "dry-needling.webp": {
+      "src": "/images/dry-needling.webp",
+      "alt": "Physiotherapist performing targeted dry needling procedure on upper back trigger points",
+      "approved": true,
+      "caption": "Dry needling procedure and trigger point therapy",
+      "aspectRatio": 1.33,
+      "objectPosition": "center center"
     }
   },
   "gallery": [

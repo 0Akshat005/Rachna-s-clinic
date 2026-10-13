@@ -74,8 +74,8 @@ export const services: Service[] = [
       "Suitability, risks and alternatives",
       "Your questions and informed consent",
     ],
-    image: "strength-reference.webp",
-    alt: "Illustrative strengthening equipment",
+    image: "dry-needling.webp",
+    alt: "Physiotherapist performing targeted dry needling procedure on upper back trigger points",
   },
   {
     slug: "cupping-therapy",
