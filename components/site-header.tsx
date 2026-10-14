@@ -23,8 +23,8 @@ export function Brand({ dark = false }: { dark?: boolean }) {
       <Image
         src={media.brand.src}
         alt=""
-        width={52}
-        height={52}
+        width={64}
+        height={64}
         priority={!dark}
         className="brand-logo"
       />
