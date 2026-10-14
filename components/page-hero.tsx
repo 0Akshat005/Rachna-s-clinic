@@ -23,7 +23,9 @@ export function PageHero({
       <div className={"container " + (image ? "page-hero-grid" : "")}>
         <div>
           <nav className="breadcrumb" aria-label="Breadcrumb">
-            <Link href="/">Home</Link>
+            <Link href="/" prefetch={false}>
+              Home
+            </Link>
             <span aria-hidden="true">/</span>
             {breadcrumb ? (
               <>

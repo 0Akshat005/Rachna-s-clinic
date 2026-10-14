@@ -101,3 +101,16 @@ for (const [device, ratio] of [
     .webp({ quality: 88 })
     .toFile("public/illustrations/hero-cinematic-" + device + ".webp");
 }
+
+// Service-specific illustrative scenes; retain the original generated PNGs.
+for (const name of [
+  "service-spine-assessment",
+  "service-manual-therapy",
+  "service-sports-rehabilitation",
+  "service-guided-pilates",
+]) {
+  await sharp("assets/source/" + name + ".png")
+    .resize({ width: 1440, withoutEnlargement: true })
+    .webp({ quality: 86 })
+    .toFile("public/illustrations/" + name + ".webp");
+}

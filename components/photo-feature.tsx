@@ -35,7 +35,7 @@ export function PhotoFeature({
           alt={approved ? selected.alt : alt}
           fill
           sizes={sizes}
-          preload={priority}
+          loading={priority ? "eager" : "lazy"}
           fetchPriority={priority ? "high" : undefined}
           style={{ objectFit: "cover", objectPosition }}
         />

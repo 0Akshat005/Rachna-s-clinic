@@ -13,6 +13,8 @@ export type Service = {
   assessment: string;
   discussion: string[];
   image: string;
+  cardImage?: string;
+  cardImageNote?: string;
   alt: string;
   number: string;
 };
@@ -23,7 +25,7 @@ export const services: Service[] = [
     category: "Spine & movement",
     number: "01",
     summary:
-      "A conversation about your back, neck and the everyday movements that matter to you.",
+      "Back and neck movement assessment, with a discussion of suitable physiotherapy and exercises.",
     heading: "Make space for easier everyday movement.",
     audience:
       "People who would like to discuss back or neck discomfort, stiffness, or difficulties with everyday movement can ask about a spine assessment.",
@@ -35,6 +37,7 @@ export const services: Service[] = [
       "Assessment findings and suitable next steps",
     ],
     image: "spine-reference.webp",
+    cardImage: "service-spine-assessment.webp",
     alt: "Illustration of a person holding their neck and lower back, with a highlighted spine and neck, back, disc health and mobility callouts.",
   },
   {
@@ -43,7 +46,7 @@ export const services: Service[] = [
     category: "Specialist modalities",
     number: "02",
     summary:
-      "Explore hands-on and specialist care options through an individual assessment.",
+      "Hands-on movement techniques (osteopathy) and rhythmic, device-assisted soft-tissue work (Matrix Rhythm Therapy).",
     heading: "Understand your options before choosing care.",
     audience:
       "People curious about hands-on care or Matrix Rhythm Therapy can discuss their questions with the clinic. You do not need to select a technique before an assessment.",
@@ -54,8 +57,9 @@ export const services: Service[] = [
       "Practitioner qualifications and suitability",
       "Alternatives, limitations and your preferences",
     ],
-    image: "strength-reference.webp",
-    alt: "Illustrative exercise equipment on a mat",
+    image: "service-manual-therapy.webp",
+    cardImageNote: "Hands-on care shown",
+    alt: "Illustrative scene of a physiotherapist gently supporting a patient's ankle during a hands-on movement assessment.",
   },
   {
     slug: "dry-needling",
@@ -63,7 +67,7 @@ export const services: Service[] = [
     category: "Specialist modalities",
     number: "03",
     summary:
-      "Discuss suitability, alternatives and informed consent before considering this technique.",
+      "Fine needles placed into muscle tissue, following an assessment and your informed consent.",
     heading: "A considered conversation about specialist care.",
     audience:
       "People who want to understand dry needling can discuss it with a qualified practitioner. An interest in a technique does not establish that it is suitable for you.",
@@ -83,7 +87,7 @@ export const services: Service[] = [
     category: "Specialist modalities",
     number: "04",
     summary:
-      "A discussion of the specific technique, individual suitability and available alternatives.",
+      "Cups create suction on the skin. Ask which form of cupping is offered and what it involves.",
     heading: "Ask questions. Make an informed choice.",
     audience:
       "People with questions about cupping can speak with the clinic about the exact technique offered. Different procedures require different qualifications and suitability checks.",
@@ -103,7 +107,7 @@ export const services: Service[] = [
     category: "Specialist modalities",
     number: "05",
     summary:
-      "Learn about equipment-based options in the context of an assessment and care plan.",
+      "Device-based care using radiofrequency energy (TECAR) or laser light, selected after an assessment.",
     heading: "Your assessment comes before the equipment.",
     audience:
       "People who would like to understand TECAR or laser therapy can ask about the equipment and its intended role. The availability of a device is not a recommendation to use it.",
@@ -115,6 +119,7 @@ export const services: Service[] = [
       "Other options and when the plan is reviewed",
     ],
     image: "tecar-laser-therapy.webp",
+    cardImageNote: "Laser procedure shown",
     alt: "Physiotherapist administering targeted laser therapy to a patient's knee using specialized equipment",
   },
   {
@@ -123,7 +128,7 @@ export const services: Service[] = [
     category: "Rehabilitation",
     number: "06",
     summary:
-      "Bring your activity goals into a discussion about recovery and returning to movement.",
+      "Guided exercises and movement practice for a return to sport or regular activity.",
     heading: "Your next chapter of movement starts here.",
     audience:
       "People returning to sport or regular activity after an injury can discuss their current abilities, prior treatment and activity goals with the clinic.",
@@ -134,8 +139,8 @@ export const services: Service[] = [
       "Current movement and previous treatment",
       "A practical plan with agreed review points",
     ],
-    image: "movement-reference.webp",
-    alt: "Illustrative image of a woman stretching her shoulder",
+    image: "service-sports-rehabilitation.webp",
+    alt: "Illustrative scene of a physiotherapist supervising a controlled low step-up exercise.",
   },
   {
     slug: "pilates-training",
@@ -143,7 +148,7 @@ export const services: Service[] = [
     category: "Strength & Pilates",
     number: "07",
     summary:
-      "Explore guided movement and goals around strength, posture and body awareness.",
+      "Controlled, guided exercises focused on strength, posture and body awareness, adapted to your starting point.",
     heading: "Build a thoughtful relationship with movement.",
     audience:
       "People interested in guided exercise can discuss their goals and current movement needs with the clinic. Ask about the format of Pilates sessions and the supervision available.",
@@ -154,8 +159,8 @@ export const services: Service[] = [
       "Session format and supervision",
       "A starting point that fits your circumstances",
     ],
-    image: "pilates-reference.webp",
-    alt: "Illustrative Pilates ball, mat and exercise bands",
+    image: "service-guided-pilates.webp",
+    alt: "Illustrative scene of a physiotherapist guiding a controlled bent-knee mat exercise.",
   },
 ];
 export const serviceCategories = [
@@ -166,3 +171,9 @@ export const serviceCategories = [
   "Strength & Pilates",
 ] as const;
 export const featuredServices = [services[0], services[5], services[6]];
+
+export function serviceCategoryLabel(category: string) {
+  return category === "Specialist modalities"
+    ? "Specialist therapies"
+    : category;
+}

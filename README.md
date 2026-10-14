@@ -36,7 +36,11 @@ Node.js 20.9+ is required. Use Node 22 or a current supported LTS. Fonts are bun
 
 The layout was revised around the supplied finalized homepage inspiration. Marketing pages use a fluid grid with 5% desktop side gutters rather than a centered 1280px cap. Home combines a full-bleed hero image, compact concern navigation, a sage introduction band, numbered service rows, a navy process section, split FAQ/contact sections and a reference-inspired footer with quick links, all seven services, full address, two contact numbers, weekday/Sunday hours and the exact Designed & Developed by BizLeap credit. Mobile adapts to 20px/18px gutters and stacked content. The working booking flow remains available throughout.
 
-Shared foundations live in app/globals.css; homepage sections live in app/editorial.css; the panoramic banner lives in app/home-hero.css and components/hero-media.tsx; the expanded footer is scoped in components/site-footer.module.css. The supplied footer screenshot's hours are held separately in clinic.json referenceOpeningHours while approved hours remain pending. Original high-resolution photographs remain a production asset requirement; current photos are labelled illustrative reference crops.
+Shared foundations live in app/globals.css; homepage sections live in app/editorial.css; the panoramic banner lives in app/home-hero.css and components/hero-media.tsx; the expanded footer is scoped in components/site-footer.module.css. Interaction styling lives in app/motion.css, with a small route-aware components/site-motion.tsx controller. The numbered home services use components/service-showcase.tsx for image previews on hover/focus and previous/next controls on touch or keyboard. The supplied footer screenshot's hours are held separately in clinic.json referenceOpeningHours while approved hours remain pending. The approved service images and client-supplied Spine Care illustration are preserved. The panoramic hero is labelled as an illustrative generated scene; authentic clinic photography remains a production asset requirement.
+
+Motion uses native browser APIs and CSS without an animation dependency. Marketing content is readable before JavaScript runs; text stays at full opacity during transitions. Entrances play once as sections come into view, focus cancels an entrance on the focused region, and changes to the reduced-motion preference cancel active movement and image fades. The hero image retains its existing responsive art direction and preload behavior. FAQs remain native keyboard-accessible details/summary controls.
+
+The About page uses its own server-rendered editorial layout in app/about/page.tsx and app/about/about.module.css. It explains the clinic's purpose, connects patient concerns to care options and provides a native first-visit disclosure guide. Its image is registered in content/media.json and explicitly labelled illustrative. Verified practitioner information appears when the existing clinic approval settings and profile are supplied. Reproduce six-width visual captures with `node scripts/review-about.mjs`.
 
 ## Booking modes
 
@@ -97,6 +101,10 @@ npm run build
 npm run test:e2e
 npm audit --omit=dev
 ```
+
+For service-directory crops, six viewport widths, filtering, reduced motion and browsing without JavaScript, run `node scripts/review-services.mjs` while the local preview is running. Generated service images and their built-in imagegen prompts are recorded in `assets/source/service-image-prompts.json`; originals and optimized WebPs are saved in the project.
+
+For settled desktop/mobile screenshots and service/FAQ interaction captures, run `node scripts/review-motion.mjs` while the local preview is running.
 
 Browser tests expect preview mode at `http://localhost:3000` and start the production server if necessary. Screenshots are saved under ignored `artifacts/`. Use sample contact details for preview testing.
 

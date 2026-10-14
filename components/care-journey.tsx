@@ -21,10 +21,10 @@ export function CareJourney() {
     <section className="section journey-section">
       <div className="container">
         <p className="eyebrow">Our approach</p>
-        <h2>A clear plan, at your pace.</h2>
+        <h2 data-reveal>A clear plan, at your pace.</h2>
         <ol className="journey-grid">
           {steps.map(([title, body], index) => (
-            <li key={title}>
+            <li key={title} data-reveal data-reveal-delay={index * 65}>
               <span className="step-number">0{index + 1}</span>
               <h3>{title}</h3>
               <p>{body}</p>

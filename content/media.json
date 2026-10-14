@@ -67,6 +67,40 @@
       "caption": "Targeted laser and TECAR therapy procedure for joint recovery",
       "aspectRatio": 1.4,
       "objectPosition": "center 45%"
+    },
+    "about-therapy.webp": {
+      "src": "/illustrations/hero-physiotherapy.webp",
+      "alt": "Illustrative scene of a physiotherapist supporting a seated patient during an arm movement assessment.",
+      "approved": false,
+      "caption": "Illustrative physiotherapy scene · AI-generated"
+    },
+    "service-spine-assessment.webp": {
+      "src": "/illustrations/service-spine-assessment.webp",
+      "alt": "Illustrative scene of a physiotherapist supporting a seated patient during a neck movement assessment.",
+      "approved": false,
+      "caption": "Illustrative service scene · AI-generated",
+      "cardPosition": "center center"
+    },
+    "service-manual-therapy.webp": {
+      "src": "/illustrations/service-manual-therapy.webp",
+      "alt": "Illustrative scene of a physiotherapist gently supporting a patient's ankle during a hands-on movement assessment.",
+      "approved": false,
+      "caption": "Illustrative service scene · AI-generated",
+      "cardPosition": "center center"
+    },
+    "service-sports-rehabilitation.webp": {
+      "src": "/illustrations/service-sports-rehabilitation.webp",
+      "alt": "Illustrative scene of a physiotherapist supervising a controlled low step-up exercise.",
+      "approved": false,
+      "caption": "Illustrative service scene · AI-generated",
+      "cardPosition": "center center"
+    },
+    "service-guided-pilates.webp": {
+      "src": "/illustrations/service-guided-pilates.webp",
+      "alt": "Illustrative scene of a physiotherapist guiding a controlled bent-knee mat exercise.",
+      "approved": false,
+      "caption": "Illustrative service scene · AI-generated",
+      "cardPosition": "38% center"
     }
   },
   "gallery": [

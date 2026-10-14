@@ -11,7 +11,7 @@ export function LocationSection() {
   return (
     <section className="section location-section">
       <div className="container location-grid">
-        <div>
+        <div data-reveal>
           <p className="eyebrow">Contact us</p>
           <h2>
             Let’s get you
@@ -34,7 +34,7 @@ export function LocationSection() {
             </a>
           </div>
         </div>
-        <div className="location-details">
+        <div className="location-details" data-reveal data-reveal-delay="80">
           <h3>Visit {clinic.name}</h3>
           <div>
             <Icon name="pin" />

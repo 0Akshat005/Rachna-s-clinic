@@ -14,7 +14,11 @@ const links = [
 ];
 export function Brand({ dark = false }: { dark?: boolean }) {
   return (
-    <Link href="/" className={"brand" + (dark ? " brand-dark" : "")}>
+    <Link
+      href="/"
+      prefetch={false}
+      className={"brand" + (dark ? " brand-dark" : "")}
+    >
       <Image src={media.brand.src} alt="" width={48} height={51} />
       <span>
         <strong>
@@ -29,6 +33,17 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
+  const header = useRef<HTMLElement>(null);
+  const sentinel = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    if (!sentinel.current || !("IntersectionObserver" in window)) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (header.current)
+        header.current.dataset.scrolled = String(!entry.isIntersecting);
+    });
+    observer.observe(sentinel.current);
+    return () => observer.disconnect();
+  }, []);
   useEffect(() => {
     if (!open) return;
     const close = (event: KeyboardEvent) => {
@@ -54,7 +69,8 @@ export function SiteHeader() {
           </a>
         </div>
       </div>
-      <header className="site-header">
+      <span ref={sentinel} className="header-sentinel" aria-hidden="true" />
+      <header ref={header} className="site-header">
         <div className="container header-inner">
           <Brand />
           <nav
@@ -66,6 +82,7 @@ export function SiteHeader() {
               <Link
                 key={href}
                 href={href}
+                prefetch={href === "/" ? false : undefined}
                 aria-current={
                   pathname === href ||
                   (href !== "/" && pathname.startsWith(href))

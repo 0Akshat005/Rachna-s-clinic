@@ -1,16 +1,22 @@
 "use client";
 import { useState } from "react";
-import { services, serviceCategories } from "@/lib/services";
-import { ServiceCard } from "./service-card";
+import {
+  services,
+  serviceCategories,
+  serviceCategoryLabel,
+} from "@/lib/services";
+import { ServiceVisualCard } from "./service-visual-card";
+import styles from "./service-directory.module.css";
+
 export function ServiceDirectory() {
   const [filter, setFilter] = useState<string>("All");
   const visible = services.filter(
-    (s) => filter === "All" || s.category === filter,
+    (service) => filter === "All" || service.category === filter,
   );
   return (
     <>
       <div
-        className="chips service-filters"
+        className={"chips service-filters " + styles.filters}
         role="group"
         aria-label="Filter services"
       >
@@ -20,19 +26,31 @@ export function ServiceDirectory() {
             key={category}
             className={"chip " + (category === filter ? "selected" : "")}
             aria-pressed={filter === category}
+            aria-controls="service-directory-results"
             onClick={() => setFilter(category)}
           >
-            {category}
+            {serviceCategoryLabel(category)}
           </button>
         ))}
       </div>
-      <p className="directory-count" role="status">
+      <p
+        className={"directory-count " + styles.count}
+        role="status"
+        aria-atomic="true"
+      >
         {visible.length} {visible.length === 1 ? "service" : "services"} to
         explore
       </p>
-      <div className="directory-grid">
-        {visible.map((service) => (
-          <ServiceCard key={service.slug} service={service} />
+      <div
+        id="service-directory-results"
+        className={"directory-grid " + styles.grid}
+      >
+        {visible.map((service, index) => (
+          <ServiceVisualCard
+            key={service.slug}
+            service={service}
+            wide={visible.length % 2 === 1 && index === visible.length - 1}
+          />
         ))}
       </div>
     </>

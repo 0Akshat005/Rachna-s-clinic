@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Icon } from "@/components/icon";
 import { PhotoFeature } from "@/components/photo-feature";
 import { HeroMedia } from "@/components/hero-media";
+import { ServiceShowcase } from "@/components/service-showcase";
+import media from "@/content/media.json";
 import { CareFinder } from "@/components/care-finder";
 import { DoctorSection } from "@/components/doctor-section";
 import { CareJourney } from "@/components/care-journey";
@@ -60,42 +62,29 @@ export default function Home() {
       <CareFinder compact />
       <DoctorSection compact />
       <section className="section editorial-services">
-        <div className="container editorial-services-grid">
-          <div>
-            <p className="eyebrow">Our services</p>
-            <h2>
-              Specialised care.
-              <br />
-              Personal attention.
-            </h2>
-            <ol className="service-index">
-              {services.map((service) => (
-                <li key={service.slug}>
-                  <Link href={"/services/" + service.slug}>
-                    <span className="index-number">{service.number}</span>
-                    <span>{service.name}</span>
-                    <Icon name="arrow" />
-                  </Link>
-                </li>
-              ))}
-            </ol>
-            <Link href="/services" className="text-link editorial-link">
-              Explore All Services
-              <Icon name="arrow" />
-            </Link>
-          </div>
-          <PhotoFeature
-            src="pilates-editorial-reference.webp"
-            alt="Illustrative Pilates ball, exercise mat and stretching strap"
-            className="editorial-services-photo"
-            caption="Illustrative equipment image"
-          />
-        </div>
+        <ServiceShowcase
+          items={services.map((service) => {
+            const image =
+              media.features[service.image as keyof typeof media.features];
+            return {
+              slug: service.slug,
+              number: service.number,
+              name: service.name,
+              category: service.category,
+              summary: service.summary,
+              src: "mobileSrc" in image ? image.mobileSrc : image.src,
+              alt: image.alt || service.alt,
+              caption: image.caption || "Illustrative equipment image",
+              objectPosition:
+                "objectPosition" in image ? image.objectPosition : "center",
+            };
+          })}
+        />
       </section>
       <CareJourney />
       <section className="section specialist-section">
         <div className="container specialist-grid">
-          <div>
+          <div data-reveal>
             <p className="eyebrow">Specialist care</p>
             <h2>Support for your recovery.</h2>
             <p className="supporting">

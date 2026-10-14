@@ -10,7 +10,7 @@ export function DoctorSection({ compact = false }: { compact?: boolean }) {
     return (
       <section className="section practitioner-band">
         <div className="container practitioner-grid">
-          <div>
+          <div data-reveal>
             <p className="eyebrow">Your physiotherapist</p>
             <h2>
               Care that starts
@@ -18,7 +18,7 @@ export function DoctorSection({ compact = false }: { compact?: boolean }) {
               with understanding.
             </h2>
           </div>
-          <div className="practitioner-copy">
+          <div className="practitioner-copy" data-reveal data-reveal-delay="80">
             <h3>
               {approved
                 ? clinic.practitioner.title +
@@ -62,7 +62,7 @@ export function DoctorSection({ compact = false }: { compact?: boolean }) {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div className="practitioner-copy">
+        <div className="practitioner-copy" data-reveal data-reveal-delay="80">
           <p className="eyebrow">The person behind your care</p>
           <h2>
             Care that starts

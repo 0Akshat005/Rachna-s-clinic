@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { SiteMotion } from "@/components/site-motion";
 import { clinic, siteUrl, indexingEnabled } from "@/lib/clinic-profile";
 import { localBusinessSchema } from "@/lib/seo";
 import "./globals.css";
 import "./editorial.css";
 import "./home-hero.css";
+import "./motion.css";
 import { bodyFont, headingFont } from "./fonts";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -37,6 +39,7 @@ export default function RootLayout({
           {children}
         </main>
         <SiteFooter />
+        <SiteMotion />
         {schema ? (
           <script
             type="application/ld+json"

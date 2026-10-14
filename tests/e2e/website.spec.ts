@@ -93,13 +93,34 @@ test("Care Finder and service directory filters are usable", async ({
   ).toHaveAttribute("href", "/request-appointment");
   await page.goto("/services");
   await page
-    .getByRole("button", { name: "Specialist modalities", exact: true })
+    .getByRole("button", { name: "Specialist therapies", exact: true })
     .click();
   await expect(page.locator(".directory-grid article")).toHaveCount(4);
   await page
     .getByRole("button", { name: "Strength & Pilates", exact: true })
     .click();
   await expect(page.locator(".directory-grid article")).toHaveCount(1);
+  const pilatesCard = page.locator(".directory-grid article");
+  await expect(pilatesCard.getByRole("img")).toHaveAttribute(
+    "alt",
+    /controlled bent-knee/,
+  );
+  await expect(
+    pilatesCard.getByRole("link", { name: "Pilates Training", exact: true }),
+  ).toHaveAttribute("href", "/services/pilates-training");
+  await page.getByRole("button", { name: "All", exact: true }).click();
+  await expect(page.locator(".directory-grid article")).toHaveCount(7);
+  for (const card of await page.locator(".directory-grid article").all()) {
+    await expect(card.getByRole("img")).toHaveCount(1);
+    await expect(card.getByRole("link")).toHaveCount(1);
+  }
+  const spineLink = page
+    .locator(".directory-grid article")
+    .first()
+    .getByRole("link");
+  await spineLink.focus();
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/services\/spine-care$/);
 });
 test("mobile navigation handles keyboard and Escape with focus return", async ({
   page,
@@ -194,6 +215,7 @@ test("secondary pages fit 320px, and reduced viewport approximates 200 percent b
     await page.setViewportSize({ width, height: 900 });
     for (const route of [
       "/services",
+      "/about",
       "/contact",
       "/request-appointment",
       "/services/spine-care",
@@ -228,4 +250,145 @@ test("preview has no third-party embeds or indexable business claims", async ({
   expect(await (await request.get("/sitemap.xml")).text()).toContain(
     "/services/pilates-training",
   );
+});
+
+test("service previews support browsing, direct links and persistent keyboard focus", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const preview = page.locator("#service-preview");
+  const next = page.getByRole("button", {
+    name: "Preview next service",
+    exact: true,
+  });
+  await page
+    .locator(".service-index")
+    .getByRole("link", { name: "Dry Needling" })
+    .hover();
+  await expect(preview.getByRole("heading", { level: 3 })).toHaveText(
+    "Dry Needling",
+  );
+  await expect(
+    preview.getByRole("link", { name: "Explore this care" }),
+  ).toHaveAttribute("href", "/services/dry-needling");
+  await next.click();
+  await expect(preview.getByRole("heading", { level: 3 })).toHaveText(
+    "Hijama / Cupping Therapy",
+  );
+  await expect(next).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(preview.getByRole("heading", { level: 3 })).toHaveText(
+    "TECAR & Laser Therapy",
+  );
+  await expect(next).toBeFocused();
+  await expect(
+    preview.locator(".photo-inner img:not([aria-hidden])"),
+  ).toHaveAttribute("alt", /laser therapy/i);
+  await page
+    .locator(".service-index")
+    .getByRole("link", { name: "Spine Care" })
+    .focus();
+  await expect(preview.getByRole("heading", { level: 3 })).toHaveText(
+    "Spine Care",
+  );
+  await page
+    .getByRole("button", { name: "Preview previous service", exact: true })
+    .click();
+  await expect(preview.getByRole("heading", { level: 3 })).toHaveText(
+    "Pilates Training",
+  );
+  await expect(
+    preview.getByRole("link", { name: "Explore this care" }),
+  ).toHaveAttribute("href", "/services/pilates-training");
+  await expect(preview.getByRole("status")).toHaveText(
+    "Pilates Training, 7 of 7",
+  );
+});
+
+test("touch previews and native FAQs work with reduced motion", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({
+    viewport: { width: 390, height: 844 },
+    hasTouch: true,
+    isMobile: true,
+    reducedMotion: "reduce",
+  });
+  try {
+    const page = await context.newPage();
+    await page.goto("/");
+    const next = page.getByRole("button", {
+      name: "Preview next service",
+      exact: true,
+    });
+    await next.tap();
+    await expect(page.locator("#service-preview h3")).toHaveText(
+      "Osteopathy & Matrix Rhythm Therapy",
+    );
+    await expect(page.locator("#service-preview .photo-inner img")).toHaveCount(
+      1,
+    );
+    const question = page.locator(".faq-list summary").first();
+    await question.tap();
+    await expect(page.locator(".faq-list details").first()).toHaveAttribute(
+      "open",
+      "",
+    );
+    await expect(
+      page.locator(".faq-list details").first().locator("p"),
+    ).toBeVisible();
+    await question.tap();
+    await expect(page.locator(".faq-list details").first()).not.toHaveAttribute(
+      "open",
+    );
+    await expect
+      .poll(() => page.evaluate(() => document.getAnimations().length))
+      .toBe(0);
+    const geometry = await page.evaluate(() => {
+      window.scrollTo(0, 1200);
+      return document.querySelector(".site-header")!.getBoundingClientRect()
+        .height;
+    });
+    expect(geometry).toBeGreaterThanOrEqual(78);
+    await expect
+      .poll(() =>
+        page
+          .locator(".site-header")
+          .evaluate((node) => node.getBoundingClientRect().top),
+      )
+      .toBe(0);
+  } finally {
+    await context.close();
+  }
+});
+
+test("About page explains care and supports keyboard navigation through the visit guide", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/about");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Physiotherapy for everyday movement.",
+  );
+  await expect(
+    page.getByRole("link", { name: "Request an assessment", exact: true }),
+  ).toHaveAttribute("href", "/request-appointment");
+  await page
+    .getByRole("navigation", { name: "Explore the About page" })
+    .getByRole("link", { name: /Your first visit/ })
+    .click();
+  await expect(page).toHaveURL(/#your-first-visit$/);
+  await expect(page.locator("#your-first-visit")).toBeFocused();
+  const step = page.locator("#your-first-visit details").nth(1);
+  await step.locator("summary").focus();
+  await page.keyboard.press("Enter");
+  await expect(step).toHaveAttribute("open", "");
+  await expect(step.locator("p")).toBeVisible();
+  await page.keyboard.press("Enter");
+  await expect(step).not.toHaveAttribute("open");
+  await expect(
+    page.getByRole("link", {
+      name: /Explore Sports Injury Rehabilitation/,
+    }),
+  ).toHaveAttribute("href", "/services/sports-injury-rehabilitation");
 });

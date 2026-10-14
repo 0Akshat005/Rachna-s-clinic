@@ -82,6 +82,7 @@ export function CareFinder({ compact = false }: { compact?: boolean }) {
                 type="button"
                 key={concern.label}
                 aria-pressed={i === index}
+                aria-controls="care-finder-result"
                 onClick={() => setIndex(i)}
                 className={
                   (compact ? "concern-option " : "chip ") +
@@ -93,37 +94,48 @@ export function CareFinder({ compact = false }: { compact?: boolean }) {
             ))}
           </div>
         </div>
-        <div aria-live="polite" aria-atomic="true">
-          {selected ? (
-            <>
-              <div className={compact ? "concern-response" : "care-result"}>
-                {!compact ? (
-                  <div className="care-icon">
-                    <Icon name="leaf" />
+        <div
+          id="care-finder-result"
+          className="care-response-shell"
+          data-expanded={selected !== null}
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <div className="care-response-inner">
+            {selected ? (
+              <>
+                <div
+                  key={selected.label}
+                  className={compact ? "concern-response" : "care-result"}
+                >
+                  {!compact ? (
+                    <div className="care-icon">
+                      <Icon name="leaf" />
+                    </div>
+                  ) : null}
+                  <div>
+                    <h3>{selected.title}</h3>
+                    <p>{selected.description}</p>
                   </div>
-                ) : null}
-                <div>
-                  <h3>{selected.title}</h3>
-                  <p>{selected.description}</p>
-                </div>
-                <Link href={selected.href} className="text-link">
-                  {selected.link}
-                  <Icon name="arrow" />
-                </Link>
-              </div>
-              <div className="care-note">
-                <p>
-                  This finder suggests a service to explore. It does not provide
-                  a diagnosis or treatment recommendation.
-                </p>
-                {!compact ? (
-                  <Link href="/request-appointment">
-                    Or go straight to an assessment →
+                  <Link href={selected.href} className="text-link">
+                    {selected.link}
+                    <Icon name="arrow" />
                   </Link>
-                ) : null}
-              </div>
-            </>
-          ) : null}
+                </div>
+                <div className="care-note">
+                  <p>
+                    This finder suggests a service to explore. It does not
+                    provide a diagnosis or treatment recommendation.
+                  </p>
+                  {!compact ? (
+                    <Link href="/request-appointment">
+                      Or go straight to an assessment →
+                    </Link>
+                  ) : null}
+                </div>
+              </>
+            ) : null}
+          </div>
         </div>
       </div>
     </section>

@@ -1,0 +1,31 @@
+{
+  "mode": "Built-in image_gen",
+  "date": "2026-10-14",
+  "purpose": "Illustrative service scenes; fictional people and premises, subject to clinic review.",
+  "assets": [
+    {
+      "key": "service-spine-assessment",
+      "prompt": "Use case: photorealistic-natural. Create one premium editorial clinical photograph for an Indian physiotherapy website service card. Landscape 4:3 composition. Fictional adult Indian people, fully clothed, credible calm treatment setting with ivory walls, muted sage upholstery and navy accents, warm natural window light, realistic skin, realistic human anatomy and hands. Candid professional care rather than a posed stock photo, no glossy airbrushing, no dramatic effects. Frame the clinically meaningful action in the upper two-thirds, keep the lower third a quieter natural foreground for a live HTML text overlay. No text, lettering, logos, watermarks, interface elements, glowing anatomy or medical claims. The photograph is an illustrative scene, not actual clinic staff or premises. Subject: a female physiotherapist in sage scrubs gently supporting an adult woman's upper back while observing a comfortable seated neck movement on a treatment bench. Show both people and the hands clearly, patient in ivory athletic T-shirt and navy trousers. Gentle movement assessment, no forceful twisting. Medium framing with subjects central, neck and shoulders in upper half. A minimal sage treatment bench anchors the lower foreground.",
+      "source": "assets/source/service-spine-assessment.png",
+      "webp": "public/illustrations/service-spine-assessment.webp"
+    },
+    {
+      "key": "service-manual-therapy",
+      "prompt": "Use case: photorealistic-natural. Create one premium editorial clinical photograph for an Indian physiotherapy website service card. Landscape 4:3 composition. Fictional adult Indian people, fully clothed, credible calm treatment setting with ivory walls, muted sage upholstery and navy accents, warm natural window light, realistic skin, realistic human anatomy and hands. Candid professional care rather than a posed stock photo, no glossy airbrushing, no dramatic effects. Frame the clinically meaningful action in the upper two-thirds, keep the lower third a quieter natural foreground for a live HTML text overlay. No text, lettering, logos, watermarks, interface elements, glowing anatomy or medical claims. The photograph is an illustrative scene, not actual clinic staff or premises. Subject: a female physiotherapist in sage scrubs performing a gentle hands-on ankle mobility assessment on an adult patient's lower leg, patient reclining comfortably on a sage treatment bench wearing navy athletic trousers ending above the ankle. Hands support the heel and ankle naturally. Show therapist, patient's leg and hands clearly in upper central area. This image represents hands-on manual care only: no invented branded Matrix Rhythm equipment or devices. A folded ivory towel and edge of the treatment bench occupy the quieter lower foreground.",
+      "source": "assets/source/service-manual-therapy.png",
+      "webp": "public/illustrations/service-manual-therapy.webp"
+    },
+    {
+      "key": "service-sports-rehabilitation",
+      "prompt": "Use case: photorealistic-natural. Create one premium editorial clinical photograph for an Indian physiotherapy website service card. Landscape 4:3 composition. Fictional adult Indian people, fully clothed, credible calm treatment setting with ivory walls, muted sage upholstery and navy accents, warm natural window light, realistic skin, realistic human anatomy and hands. Candid professional care rather than a posed stock photo, no glossy airbrushing, no dramatic effects. Frame the clinically meaningful action in the upper two-thirds, keep the lower third a quieter natural foreground for a live HTML text overlay. No text, lettering, logos, watermarks, interface elements, glowing anatomy or medical claims. The photograph is an illustrative scene, not actual clinic staff or premises. Subject: an adult Indian man in navy sportswear performing a slow controlled low step-up on a stable small rehabilitation step while a female physiotherapist in sage scrubs stands beside him observing knee and ankle alignment. Show full movement clearly, low step and both legs, realistic exercise form, no jumping, no pain expression, no brace. Balanced composition with knee, therapist and torso in upper central area and calm muted sage floor in lower foreground. Practical return-to-activity exercise in a modest bright treatment room.",
+      "source": "assets/source/service-sports-rehabilitation.png",
+      "webp": "public/illustrations/service-sports-rehabilitation.webp"
+    },
+    {
+      "key": "service-guided-pilates",
+      "prompt": "Use case: photorealistic-natural. Create one premium editorial clinical photograph for an Indian physiotherapy website service card. Landscape 4:3 composition. Fictional adult Indian people, fully clothed, credible calm treatment setting with ivory walls, muted sage upholstery and navy accents, warm natural window light, realistic skin, realistic human anatomy and hands. Candid professional care rather than a posed stock photo, no glossy airbrushing, no dramatic effects. Frame the clinically meaningful action in the upper two-thirds, keep the lower third a quieter natural foreground for a live HTML text overlay. No text, lettering, logos, watermarks, interface elements, glowing anatomy or medical claims. The photograph is an illustrative scene, not actual clinic staff or premises. Subject: an adult Indian woman in ivory athletic top and navy leggings lying comfortably on her back on a sage exercise mat, knees bent, performing a simple controlled single bent-knee lift, female physiotherapist in sage scrubs kneeling beside her guiding with an open hand gesture. Both arms rest by the patient's sides, other foot planted, natural neutral spine, anatomically credible simple beginner mat exercise. Medium-wide angle from slightly above, clear face, torso and legs in upper two-thirds. The muted exercise mat extends through the quieter lower foreground. No reformer or invented clinic equipment.",
+      "source": "assets/source/service-guided-pilates.png",
+      "webp": "public/illustrations/service-guided-pilates.webp"
+    }
+  ]
+}

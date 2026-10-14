@@ -21,7 +21,7 @@ export function FaqAccordion({
   return (
     <section className="section faq-section">
       <div className="container faq-grid">
-        <div>
+        <div data-reveal>
           <p className="eyebrow">A few helpful answers</p>
           <h2>{title}</h2>
           <p className="supporting">
