@@ -66,9 +66,10 @@ export default function Privacy() {
         <h2>External services</h2>
         <p>
           Call, WhatsApp and Google Maps links open services with their own
-          privacy terms. No map is loaded automatically. Where an approved
-          embedded map is available, Google receives a connection only after you
-          choose to load it. This website includes no advertising trackers or
+          privacy terms. The Contact page includes an embedded Google Maps map,
+          which may load automatically as you browse the page and connect your
+          browser to Google. Google’s own privacy terms apply to that map. The
+          website itself includes no additional advertising trackers or
           analytics cookies.
         </p>
         <h2>Your choices</h2>

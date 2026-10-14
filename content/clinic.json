@@ -17,7 +17,7 @@
     "quote": ""
   },
   "hours": [],
-  "mapEmbedUrl": "",
+  "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3722.3805378371962!2d79.07273649999999!3d21.0973897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4bf73290ebbbf%3A0x2645c2a352999593!2sRachana%20Physiotherapy%20Clinic%2FOsteopathy%2FMatrix%20Rhythm%20Therapy%2FNeedling%2FHijama%20clinic!5e0!3m2!1sen!2sin!4v1791973650662!5m2!1sen!2sin",
   "approvedLogo": false,
   "photosApproved": false,
   "privacyApproved": false,
@@ -37,5 +37,7 @@
       "days": "Sunday",
       "sessions": ["8:30 AM–1:00 PM"]
     }
-  ]
+  ],
+  "mapUrl": "https://www.google.com/maps/place/Rachana+Physiotherapy+Clinic%2FOsteopathy%2FMatrix+Rhythm+Therapy%2FNeedling%2FHijama+clinic/@21.0973897,79.0727365,17z/data=!3m1!4b1!4m6!3m5!1s0x3bd4bf73290ebbbf:0x2645c2a352999593!8m2!3d21.0973897!4d79.0727365!16s%2Fg%2F11f3_v9xr6",
+  "mapSourceUrl": "https://share.google/2SjWHQuwtEqvgvxbY"
 }

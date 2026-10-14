@@ -26,7 +26,7 @@ Node.js 20.9+ is required. Use Node 22 or a current supported LTS. Fonts are bun
 - Original navy, sage and warm-white design with Manrope headings and Inter body text.
 - Responsive homepage, service directory, seven unique service detail routes, About, Contact, request form and privacy page.
 - Non-diagnostic Care Finder; accessible service category filters; native keyboard-accessible FAQ disclosures.
-- Call and neutral WhatsApp enquiries; directions; an interaction-only map if a verified embed URL is supplied.
+- Call and neutral WhatsApp enquiries; exact listing directions; a lazy-loaded Google Maps embed on Contact using the clinic link supplied on 14 October 2026.
 - Mobile Call / Request appointment dock with safe-area padding.
 - Server-rendered marketing content, local optimized images, page-specific metadata, canonical URLs, sitemap and robots.
 - Secure request route: shared Zod validation, explicit consent, JSON/origin checks, bounded body, honeypot, rate limiting, opaque tickets, safe audit events, delivery retries and email idempotency.

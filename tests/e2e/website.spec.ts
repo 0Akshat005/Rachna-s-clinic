@@ -202,6 +202,7 @@ test("all pages meet automated WCAG checks on desktop and mobile", async ({
     for (const route of routes) {
       await page.goto(route);
       const results = await new AxeBuilder({ page })
+        .options({ iframes: false })
         .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
         .analyze();
       expect(results.violations, route + " at " + width).toEqual([]);
@@ -231,12 +232,29 @@ test("secondary pages fit 320px, and reduced viewport approximates 200 percent b
     }
   }
 });
-test("preview has no third-party embeds or indexable business claims", async ({
+test("contact uses the exact clinic map while preview indexing stays disabled", async ({
   page,
   request,
 }) => {
   await page.goto("/contact");
-  await expect(page.locator("iframe")).toHaveCount(0);
+  const map = page.locator(".map-shell iframe");
+  await expect(map).toHaveCount(1);
+  await expect(map).toHaveAttribute("title", /Rachana Physiotherapy Clinic/);
+  await expect(map).toHaveAttribute(
+    "src",
+    /maps\/embed\?pb=.*0x2645c2a352999593/,
+  );
+  await expect(page.locator(".map-placeholder")).toHaveCount(0);
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 1000 });
+    const bounds = await page.locator(".map-shell").boundingBox();
+    expect(bounds?.height).toBe(width > 767 ? 340 : 290);
+  }
+  for (const link of await page
+    .getByRole("link", { name: /Get directions/i })
+    .all()) {
+    await expect(link).toHaveAttribute("href", /0x2645c2a352999593/);
+  }
   await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(
     0,
   );

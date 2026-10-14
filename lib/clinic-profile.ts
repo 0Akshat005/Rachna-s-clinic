@@ -8,5 +8,6 @@ export const siteUrl = process.env.SITE_URL || "http://localhost:3000";
 export const callHref = `tel:${clinic.phone}`;
 export const whatsappHref = `https://wa.me/${clinic.whatsapp}?text=${encodeURIComponent("Hello, I would like to enquire about an appointment at Rachana Physiotherapy Clinic.")}`;
 export const mapsHref =
+  clinic.mapUrl ||
   "https://www.google.com/maps/search/?api=1&query=" +
-  encodeURIComponent(clinic.name + " " + clinic.address);
+    encodeURIComponent(clinic.name + " " + clinic.address);
