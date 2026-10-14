@@ -17,7 +17,14 @@ export const metadata: Metadata = {
   },
   description:
     "Thoughtful physiotherapy and rehabilitation in Manish Nagar, Nagpur. Explore care options and request an individual assessment at Rachana Physiotherapy Clinic.",
-  icons: { icon: "/icon.svg" },
+  icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/icon-192.png", sizes: "192x192", type: "image/png" }],
+  },
+  manifest: "/manifest.json",
   robots: { index: indexingEnabled, follow: indexingEnabled },
   openGraph: { siteName: clinic.name, locale: "en_IN", type: "website" },
   twitter: { card: "summary" },

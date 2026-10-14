@@ -22,11 +22,7 @@ const sources = [
     "strength-reference.webp",
     { left: 392, top: 1374, width: 345, height: 153 },
   ],
-  [
-    "Homepage.png",
-    "logo-reference.webp",
-    { left: 33, top: 34, width: 56, height: 59 },
-  ],
+
   [
     "Spine Care Page.png",
     "spine-reference.webp",
@@ -114,3 +110,38 @@ for (const name of [
     .webp({ quality: 86 })
     .toFile("public/illustrations/" + name + ".webp");
 }
+
+// Client-approved vector-style brand logo
+const logoTrimmed = await sharp("assets/source/rachana-logo.png").trim().toBuffer();
+const logoMeta = await sharp(logoTrimmed).metadata();
+const logoMaxDim = Math.max(logoMeta.width, logoMeta.height);
+const logoPadding = Math.round(logoMaxDim * 0.05);
+const logoCanvasSize = logoMaxDim + logoPadding * 2;
+const centeredLogo = await sharp({
+  create: {
+    width: logoCanvasSize,
+    height: logoCanvasSize,
+    channels: 4,
+    background: { r: 0, g: 0, b: 0, alpha: 0 },
+  },
+})
+  .composite([{ input: logoTrimmed, gravity: "center" }])
+  .png()
+  .toBuffer();
+
+await sharp(centeredLogo)
+  .resize(1024, 1024)
+  .webp({ quality: 96, alphaQuality: 100 })
+  .toFile("public/images/logo.webp");
+await sharp(centeredLogo)
+  .resize(1024, 1024)
+  .png({ compressionLevel: 9 })
+  .toFile("public/images/logo.png");
+await sharp(centeredLogo)
+  .resize(512, 512)
+  .webp({ quality: 95, alphaQuality: 100 })
+  .toFile("public/illustrations/logo-reference.webp");
+await sharp(centeredLogo).resize(192, 192).png().toFile("public/icon-192.png");
+await sharp(centeredLogo).resize(512, 512).png().toFile("public/icon-512.png");
+await sharp(centeredLogo).resize(48, 48).png().toFile("public/favicon.png");
+

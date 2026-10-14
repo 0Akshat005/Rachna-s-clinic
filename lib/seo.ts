@@ -45,6 +45,7 @@ export function localBusinessSchema() {
     "@id": siteUrl + "/#clinic",
     name: clinic.name,
     url: siteUrl,
+    logo: new URL(media.brand.src, siteUrl).toString(),
     telephone: clinic.phone,
     address: {
       "@type": "PostalAddress",

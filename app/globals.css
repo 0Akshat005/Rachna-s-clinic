@@ -232,13 +232,20 @@ a:hover {
 .brand {
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 13px;
   flex-shrink: 0;
 }
-.brand img {
-  width: 48px;
-  height: 51px;
+.brand img,
+.brand .brand-logo {
+  width: 52px;
+  height: 52px;
   object-fit: contain;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.brand:hover .brand-logo {
+  transform: scale(1.04);
 }
 .brand strong {
   display: block;
@@ -697,6 +704,12 @@ details[open] .faq-symbol:after {
 .location-phone {
   font-weight: 600;
   font-size: 17px;
+}
+.brand-dark .brand-logo {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 .brand-dark small {
   color: #b9c9c0;
@@ -1175,8 +1188,9 @@ details[open] .faq-symbol:after {
   .header-inner {
     min-height: 78px;
   }
-  .brand img {
-    width: 41px;
+  .brand img,
+  .brand .brand-logo {
+    width: 44px;
     height: 44px;
   }
   .brand strong {
@@ -1475,8 +1489,10 @@ details[open] .faq-symbol:after {
   .brand strong {
     font-size: 18px;
   }
-  .brand img {
-    width: 37px;
+  .brand img,
+  .brand .brand-logo {
+    width: 40px;
+    height: 40px;
   }
   .brand {
     gap: 8px;

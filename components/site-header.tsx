@@ -18,8 +18,16 @@ export function Brand({ dark = false }: { dark?: boolean }) {
       href="/"
       prefetch={false}
       className={"brand" + (dark ? " brand-dark" : "")}
+      aria-label="Rachana Physiotherapy Clinic home"
     >
-      <Image src={media.brand.src} alt="" width={48} height={51} />
+      <Image
+        src={media.brand.src}
+        alt=""
+        width={52}
+        height={52}
+        priority={!dark}
+        className="brand-logo"
+      />
       <span>
         <strong>
           Rachana<span>Physiotherapy Clinic</span>

@@ -1,8 +1,8 @@
 {
   "brand": {
-    "src": "/illustrations/logo-reference.webp",
-    "alt": "",
-    "approved": false
+    "src": "/images/logo.png",
+    "alt": "Rachana Physiotherapy Clinic logo",
+    "approved": true
   },
   "doctor": {
     "src": "",
