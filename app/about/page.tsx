@@ -123,7 +123,7 @@ export default function About() {
                   style={{ objectFit: "cover", objectPosition: "center" }}
                 />
               </div>
-              <figcaption>{image.caption}</figcaption>
+              {image.caption ? <figcaption>{image.caption}</figcaption> : null}
             </figure>
           </div>
           <nav className={styles.pageIndex} aria-label="Explore the About page">

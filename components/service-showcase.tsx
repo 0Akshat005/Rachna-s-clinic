@@ -149,7 +149,9 @@ export function ServiceShowcase({ items }: { items: ServicePreview[] }) {
               />
             ) : null}
           </div>
-          <figcaption>{displayed.caption}</figcaption>
+          {displayed.caption ? (
+            <figcaption>{displayed.caption}</figcaption>
+          ) : null}
         </figure>
         <div className="service-preview-detail">
           <div className="service-preview-toolbar">

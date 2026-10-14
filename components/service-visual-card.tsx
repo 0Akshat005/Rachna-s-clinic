@@ -68,12 +68,11 @@ export function ServiceVisualCard({
             Explore this service
             <Icon name="arrow" />
           </span>
-          <span className={styles.imageNote}>
-            {asset.approved
-              ? "Supplied treatment image"
-              : "Illustrative scene · AI-generated"}
-            {service.cardImageNote ? " · " + service.cardImageNote : ""}
-          </span>
+          {service.cardImageNote ? (
+            <span className={styles.imageNote}>
+              {service.cardImageNote}
+            </span>
+          ) : null}
         </div>
       </Link>
     </article>

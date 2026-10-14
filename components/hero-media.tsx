@@ -57,7 +57,7 @@ export function HeroMedia() {
           />
         </picture>
       </div>
-      <figcaption>{hero.caption}</figcaption>
+      {hero.caption ? <figcaption>{hero.caption}</figcaption> : null}
     </figure>
   );
 }

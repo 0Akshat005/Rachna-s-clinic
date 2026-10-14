@@ -41,7 +41,7 @@ export function ClinicGallery({
                   style={{ objectFit: "cover" }}
                 />
               </div>
-              <figcaption>{photo.caption}</figcaption>
+              {photo.caption ? <figcaption>{photo.caption}</figcaption> : null}
             </figure>
           ))}
         </div>

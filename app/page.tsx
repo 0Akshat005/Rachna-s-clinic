@@ -74,7 +74,7 @@ export default function Home() {
               summary: service.summary,
               src: "mobileSrc" in image ? image.mobileSrc : image.src,
               alt: image.alt || service.alt,
-              caption: image.caption || "Illustrative equipment image",
+              caption: image.caption || "",
               objectPosition:
                 "objectPosition" in image ? image.objectPosition : "center",
             };
@@ -103,7 +103,6 @@ export default function Home() {
             src="strength-reference.webp"
             alt="Illustrative exercise equipment with dumbbells and a foam roller"
             className="specialist-photo"
-            caption="Illustrative equipment image"
           />
         </div>
       </section>

@@ -6,7 +6,7 @@ export function PhotoFeature({
   priority = false,
   className = "",
   sizes = "(max-width: 767px) 100vw, 45vw",
-  caption = "Illustrative image from the supplied design reference",
+  caption,
 }: {
   src: string;
   alt: string;
@@ -24,6 +24,7 @@ export function PhotoFeature({
     selected && "objectPosition" in selected
       ? (selected.objectPosition as string)
       : undefined;
+  const displayCaption = caption ?? (selected?.caption || "");
   return (
     <figure className={"photo-feature " + className}>
       <div
@@ -40,9 +41,7 @@ export function PhotoFeature({
           style={{ objectFit: "cover", objectPosition }}
         />
       </div>
-      <figcaption>
-        {approved ? selected.caption : selected?.caption || caption}
-      </figcaption>
+      {displayCaption ? <figcaption>{displayCaption}</figcaption> : null}
     </figure>
   );
 }
