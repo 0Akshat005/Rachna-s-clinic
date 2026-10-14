@@ -25,7 +25,11 @@ export function SiteFooter() {
           <div className={styles.main}>
             <div className={styles.brandColumn}>
               <Brand dark />
-              <p>Helping Nagpur move better.</p>
+              <p className={styles.tagline}>Helping Nagpur move better.</p>
+              <Link href="/request-appointment" className={styles.brandCta}>
+                Book appointment
+                <Icon name="arrow" />
+              </Link>
             </div>
             <nav className={styles.column} aria-label="Footer quick links">
               <h2>Quick links</h2>
@@ -40,20 +44,40 @@ export function SiteFooter() {
             <nav className={styles.column} aria-label="Footer services">
               <h2>Services</h2>
               <div className={styles.links}>
-                {services.map((service) => (
-                  <Link key={service.slug} href={"/services/" + service.slug}>
-                    {service.name}
-                  </Link>
-                ))}
+                {services.map((service) => {
+                  const label =
+                    service.slug === "osteopathy-matrix-rhythm-therapy"
+                      ? "Osteopathy & Matrix Therapy"
+                      : service.slug === "sports-injury-rehabilitation"
+                        ? "Sports Injury Rehab"
+                        : service.name;
+                  return (
+                    <Link key={service.slug} href={"/services/" + service.slug}>
+                      {label}
+                    </Link>
+                  );
+                })}
               </div>
             </nav>
             <div className={styles.contact}>
               <h2>Contact</h2>
               <address>
-                <p>{clinic.address}</p>
+                <div className={styles.addressBlock}>
+                  <p className={styles.addressStreet}>
+                    59, Nagar Vikas Society, beside Indian Bank
+                  </p>
+                  <p className={styles.addressLocality}>
+                    Manish Nagar, Nagpur — 440015
+                  </p>
+                </div>
                 <div className={styles.phones}>
-                  <a href={callHref}>{clinic.phoneDisplay}</a>
-                  <a href={"tel:" + clinic.secondaryPhone}>
+                  <a href={callHref} aria-label={"Call " + clinic.phoneDisplay}>
+                    {clinic.phoneDisplay}
+                  </a>
+                  <a
+                    href={"tel:" + clinic.secondaryPhone}
+                    aria-label={"Call " + clinic.secondaryPhoneDisplay}
+                  >
                     {clinic.secondaryPhoneDisplay}
                   </a>
                 </div>
@@ -77,9 +101,9 @@ export function SiteFooter() {
                   ))}
                 </div>
               ) : (
-                <dl>
+                <dl className={styles.scheduleList}>
                   {clinic.referenceOpeningHours.map((schedule) => (
-                    <div key={schedule.days}>
+                    <div key={schedule.days} className={styles.scheduleRow}>
                       <dt>{schedule.days}</dt>
                       <dd>
                         {schedule.sessions.map((time) => (
@@ -92,7 +116,7 @@ export function SiteFooter() {
               )}
               {!factsApproved ? (
                 <p className={styles.note}>
-                  Reference hours. Please call to confirm before visiting.
+                  Call ahead to confirm before visiting.
                 </p>
               ) : null}
             </div>
@@ -101,16 +125,18 @@ export function SiteFooter() {
         <div className={styles.bottom}>
           <div className="container">
             <div className={styles.meta}>
-              <p className={styles.copyright}>
-                © {new Date().getFullYear()} {clinic.name}. All rights reserved.
-              </p>
-              <span className={styles.separator} aria-hidden="true">
-                •
-              </span>
-              <p className={styles.credit}>
-                Designed &amp; Developed by{" "}
-                <a href="https://www.bizleap.in/">BizLeap</a>
-              </p>
+              <div className={styles.metaLeft}>
+                <p className={styles.copyright}>
+                  © {new Date().getFullYear()} {clinic.name}. All rights reserved.
+                </p>
+                <span className={styles.separator} aria-hidden="true">
+                  •
+                </span>
+                <p className={styles.credit}>
+                  Designed &amp; Developed by{" "}
+                  <a href="https://www.bizleap.in/">BizLeap</a>
+                </p>
+              </div>
               <Link className={styles.privacy} href="/privacy">
                 Privacy Policy
               </Link>
