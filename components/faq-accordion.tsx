@@ -1,15 +1,32 @@
+import type { ReactNode } from "react";
 import { clinic } from "@/lib/clinic-profile";
-const questions = [
+const questions: [string, ReactNode][] = [
   [
     "What should I bring to my first visit?",
     "Choose comfortable clothing that allows easy movement. Ask the clinic whether to bring relevant reports or previous prescriptions. Bring any questions you would like to discuss.",
   ],
   ["Do I need a referral?", clinic.referralPolicy],
-  ["How long does a session take?", clinic.sessionDuration],
-  ["How much does an appointment cost?", clinic.fees],
+  [
+    "How long does a session take?",
+    <>
+      Each session lasts <strong>1 hour</strong>, allowing sufficient time for
+      your appointment.
+    </>,
+  ],
+  [
+    "How much does an appointment cost?",
+    <>
+      The appointment fee is <strong>₹400</strong>. Full payment must be made in
+      advance before your appointment can be scheduled.
+    </>,
+  ],
   [
     "How is my appointment confirmed?",
-    "A website submission is an appointment request. The clinic will contact you to discuss availability. Your preferred day is not reserved or confirmed when you submit.",
+    <>
+      Once you submit the form in the <strong>Contact</strong> section, your
+      details are sent directly to the doctor&apos;s WhatsApp number. Your
+      appointment will then be confirmed through WhatsApp.
+    </>,
   ],
   ["Can I change or cancel my appointment?", clinic.cancellationPolicy],
 ];
