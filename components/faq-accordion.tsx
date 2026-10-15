@@ -28,7 +28,6 @@ const questions: [string, ReactNode][] = [
       appointment will then be confirmed through WhatsApp.
     </>,
   ],
-  ["Can I change or cancel my appointment?", clinic.cancellationPolicy],
 ];
 export function FaqAccordion({
   title = "Before your first visit.",
