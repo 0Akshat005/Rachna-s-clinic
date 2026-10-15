@@ -68,11 +68,30 @@
       "aspectRatio": 1.4,
       "objectPosition": "center 45%"
     },
+    "laser-therapy.webp": {
+      "src": "/images/laser-therapy.webp",
+      "alt": "Physiotherapist administering targeted laser therapy to a patient's knee using specialized equipment",
+      "approved": true,
+      "caption": "Targeted laser therapy procedure for joint recovery",
+      "aspectRatio": 1.4,
+      "objectPosition": "center 45%"
+    },
+    "service-tecar-therapy.webp": {
+      "src": "/images/service-tecar-therapy.webp",
+      "alt": "Physiotherapist applying specialized TECAR radiofrequency therapy probe to a patient's shoulder",
+      "approved": true,
+      "caption": "Targeted TECAR radiofrequency therapy procedure for soft-tissue recovery",
+      "aspectRatio": 1.333,
+      "objectPosition": "center center",
+      "cardPosition": "center center"
+    },
     "about-therapy.webp": {
-      "src": "/illustrations/hero-physiotherapy.webp",
-      "alt": "Illustrative scene of a physiotherapist supporting a seated patient during an arm movement assessment.",
-      "approved": false,
-      "caption": ""
+      "src": "/images/aboutimg.webp",
+      "alt": "Physiotherapist at Rachana Physiotherapy Clinic seated at her consultation desk with clinic rehabilitation equipment in the background",
+      "approved": true,
+      "caption": "",
+      "aspectRatio": 1.333,
+      "objectPosition": "center 35%"
     },
     "service-spine-assessment.webp": {
       "src": "/illustrations/service-spine-assessment.webp",

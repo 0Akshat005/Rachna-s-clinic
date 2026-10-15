@@ -11,14 +11,14 @@ The Markdown brief is the primary requirements source. Screenshots and the proto
 | Information                            | Editable source                                    | Current status                                                                                 |
 | -------------------------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | Name, phone, address, hours, policies  | content/clinic.json                                | Draft contact details from screenshots; hours and policies require confirmation                |
-| Practitioner biography and credentials | content/clinic.json, components/doctor-section.tsx | No unapproved name or credentials displayed                                                    |
+| Practitioner biography and credentials | content/clinic.json, components/doctor-section.tsx | Client-supplied Taelkar name and all nine credentials displayed; profile-specific approval                                                    |
 | Service names and descriptions         | lib/services.ts                                    | Introductory copy awaiting clinical review                                                     |
 | Homepage copy and care journey         | app/page.tsx, components/care-journey.tsx          | Review required                                                                                |
-| About page and first-visit guide       | app/about/page.tsx                                 | Introductory patient copy awaiting clinic review; practitioner identity remains approval-gated |
+| About page and first-visit guide       | app/about/page.tsx                                 | Client-supplied practitioner profile published; remaining patient guidance awaits clinic review |
 | FAQs                                   | components/faq-accordion.tsx                       | General guidance; exact policies come from clinic.json                                         |
 | Photography and alt text               | content/media.json                                 | Supplied references are labelled illustrative                                                  |
 | Privacy workflow                       | app/privacy/page.tsx                               | Approval, designated contact and retention periods required                                    |
-| Indexing and live booking              | Environment variables                              | Preview/noindex by default                                                                     |
+| Indexing and optional email delivery   | Environment variables                              | Preview/noindex by default                                                                     |
 
 The screenshots give varying location descriptions and unapproved hours, and the public clinician listing could not be retrieved. Do not silently treat these as verified facts. Do not add testimonials or quantitative outcomes without an approved source.
 
@@ -35,3 +35,15 @@ General technique descriptions were checked against primary sources: [NHS physio
 ## Location map confirmed from the clinic share link — 14 October 2026
 
 The user supplied https://share.google/2SjWHQuwtEqvgvxbY as the exact clinic location. It resolves to the Google listing at 21.0973897, 79.0727365 (feature ID 0x3bd4bf73290ebbbf:0x2645c2a352999593), with the address beside Indian (Allahabad) Bank in Nagar Vikas Society and phone 092092 91738. The embed was obtained directly through Google Maps → Share → Embed a map. URLs are recorded in content/clinic.json; the Contact placeholder and address-search direction links are replaced. This confirms the specific map location only and does not activate approval of unrelated hours, practitioner credentials, clinical wording, photography, privacy policy, indexing or live appointment delivery.
+
+## Clinic contact and WhatsApp handoff — 15 October 2026
+
+The user confirmed +91 92092 91738 as the clinic's only active contact and WhatsApp number. The inactive secondary number is removed from public configuration and rendering. Call and chat URLs derive from this one active phone.
+
+The Contact and Request Appointment forms prepare a labelled WhatsApp message with a name, callback number and optional general area/preferred day. The visitor explicitly agrees to share the details, opens WhatsApp, reviews the message and taps Send. The clinic must reply to confirm an appointment. FAQ confirmation wording, form instructions and the draft privacy notice now describe these actual steps. The flow does not claim automatic delivery or route the details to the retained email backend. The clinic still needs to review its WhatsApp account access and message-retention procedures; other clinic fact/clinical/privacy/indexing flags are unchanged.
+
+## Client-supplied practitioner profile — 15 October 2026
+
+The user explicitly requested the heading About Dr. Priyanka Taelkar (PT), which takes precedence over the differing Tarekar spelling in the opening sentence. All nine supplied credentials appear once on About, grouped into academic qualifications, specialist training and additional training/roles. DOMTP, FNMT and POMT retain their supplied abbreviations and locations; no expansions, equivalencies, experience, registration or biography have been inferred. The homepage uses the same name and a brief academic summary.
+
+The practitioner.approved flag applies only to this directly supplied profile. Other content approvals, indexing and delivery settings remain as configured. The existing approved About photograph, alt text and crop are preserved. Credential content was provided by the client and has not been independently verified.

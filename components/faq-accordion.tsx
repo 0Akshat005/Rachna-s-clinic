@@ -23,9 +23,9 @@ const questions: [string, ReactNode][] = [
   [
     "How is my appointment confirmed?",
     <>
-      Once you submit the form in the <strong>Contact</strong> section, your
-      details are sent directly to the doctor&apos;s WhatsApp number. Your
-      appointment will then be confirmed through WhatsApp.
+      Fill the enquiry form in the <strong>Contact</strong> section, then review
+      the prepared message and tap <strong>Send</strong> in WhatsApp. The clinic
+      will reply to discuss availability and confirm your appointment.
     </>,
   ],
 ];

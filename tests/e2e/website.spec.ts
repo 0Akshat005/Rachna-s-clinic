@@ -11,7 +11,8 @@ const routes = [
   "/services/osteopathy-matrix-rhythm-therapy",
   "/services/dry-needling",
   "/services/cupping-therapy",
-  "/services/tecar-laser-therapy",
+  "/services/laser-therapy",
+  "/services/tecar-therapy",
   "/services/sports-injury-rehabilitation",
   "/services/pilates-training",
 ];
@@ -23,6 +24,15 @@ test("all pages render one H1, healthy imagery and unique canonical paths", asyn
     const response = await page.goto(route);
     expect(response?.status()).toBe(200);
     await expect(page.locator("h1")).toHaveCount(1);
+    expect(
+      await page
+        .locator('a[href^="tel:"]')
+        .evaluateAll((links) =>
+          links.every(
+            (link) => link.getAttribute("href") === "tel:+919209291738",
+          ),
+        ),
+    ).toBe(true);
     const title = await page.title();
     expect(titles.has(title)).toBeFalsy();
     titles.add(title);
@@ -141,58 +151,114 @@ test("mobile navigation handles keyboard and Escape with focus return", async ({
     page.getByRole("navigation", { name: "Primary navigation" }),
   ).toBeHidden();
 });
-test("appointment form validates and posts to the real preview endpoint", async ({
+test("appointment enquiries validate and prepare the correct WhatsApp message on both pages", async ({
   page,
+  context,
 }) => {
-  await page.goto("/request-appointment");
-  await page
-    .getByRole("button", { name: "Preview appointment request" })
-    .click();
-  await expect(page.getByLabel("Full name", { exact: true })).toBeFocused();
-  await expect(page.locator("#name-error")).toBeVisible();
-  await page.getByLabel("Full name", { exact: true }).fill("Preview Visitor");
-  await page.getByLabel("Phone number", { exact: true }).fill("9876543210");
-  await page.getByRole("checkbox").check();
-  const response = page.waitForResponse("/api/appointment-requests");
-  await page
-    .getByRole("button", { name: "Preview appointment request" })
-    .click();
-  expect((await response).status()).toBe(200);
-  await expect(
-    page.getByRole("heading", { name: "Preview complete." }),
-  ).toBeVisible();
-  await expect(page.getByRole("status")).toContainText(
-    "No appointment request was sent",
-  );
-  await expect(page.getByLabel("Full name", { exact: true })).toHaveValue("");
-});
-test("delivery failures keep form details and show an accessible error", async ({
-  page,
-}) => {
-  await page.goto("/request-appointment");
-  await page.route("**/api/appointment-requests", (route) =>
+  let serverPosts = 0;
+  page.on("request", (request) => {
+    if (
+      request.method() === "POST" &&
+      request.url().endsWith("/api/appointment-requests")
+    )
+      serverPosts++;
+  });
+  await context.route("https://wa.me/**", (route) =>
     route.fulfill({
-      status: 502,
-      contentType: "application/json",
-      body: JSON.stringify({
-        message:
-          "Your request could not be delivered. Please retry or contact the clinic directly.",
-      }),
+      status: 200,
+      contentType: "text/html",
+      body: "<!doctype html><title>WhatsApp test handoff</title><p>Test only. No message is sent.</p>",
     }),
   );
-  await page.getByLabel("Full name", { exact: true }).fill("Preview Visitor");
+  for (const route of ["/contact", "/request-appointment"]) {
+    await page.goto(route);
+    await page
+      .getByRole("button", { name: "Continue to WhatsApp", exact: true })
+      .click();
+    await expect(page.getByLabel("Full name", { exact: true })).toBeFocused();
+    await expect(page.locator("#name-error")).toBeVisible();
+    await page
+      .getByLabel("Full name", { exact: true })
+      .fill("Sample Visitor & Family");
+    await page.getByLabel("Phone number", { exact: true }).fill("9876543210");
+    await page.getByLabel(/General area/).selectOption("Sports rehabilitation");
+    const tomorrow = new Date(Date.now() + 86400000);
+    const preferredDay = new Date(tomorrow.getTime() + 330 * 60000)
+      .toISOString()
+      .slice(0, 10);
+    await page.getByLabel(/Preferred day/).fill(preferredDay);
+    await page
+      .getByRole("button", { name: "Continue to WhatsApp", exact: true })
+      .click();
+    await expect(page.locator("#consent-error")).toBeVisible();
+    await page.getByRole("checkbox").check();
+    const opened = context.waitForEvent("page");
+    await page
+      .getByRole("button", { name: "Continue to WhatsApp", exact: true })
+      .click();
+    const popup = await opened;
+    await popup.waitForLoadState("domcontentloaded");
+    const url = new URL(popup.url());
+    expect(url.origin).toBe("https://wa.me");
+    expect(url.pathname).toBe("/919209291738");
+    const message = url.searchParams.get("text")!;
+    expect(message).toContain(
+      "*Appointment enquiry | Rachana Physiotherapy Clinic*",
+    );
+    expect(message).toContain("*Name:* Sample Visitor & Family");
+    expect(message).toContain("*Callback number:* +91 9876543210");
+    expect(message).toContain(
+      "*General area of interest:* Sports rehabilitation",
+    );
+    expect(message).toMatch(/\*Preferred day:\* \w+, \d{1,2} \w+ \d{4}/);
+    expect(message).toContain("confirmed only after the clinic replies");
+    await popup.close();
+    await expect(page.getByRole("status")).toContainText(
+      "Tap Send in WhatsApp",
+    );
+    await expect(
+      page.getByRole("link", { name: "Open WhatsApp again" }),
+    ).toHaveAttribute("href", url.href);
+    await expect(page.getByLabel("Full name", { exact: true })).toHaveValue(
+      "Sample Visitor & Family",
+    );
+  }
+  expect(serverPosts).toBe(0);
+});
+
+test("WhatsApp handoff keeps a retry link and entered details when a new window cannot open", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    window.open = () => {
+      throw new Error("Simulated popup unavailable");
+    };
+  });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/contact");
+  await page.getByLabel("Full name", { exact: true }).fill("Sample Visitor");
   await page.getByLabel("Phone number", { exact: true }).fill("9876543210");
   await page.getByRole("checkbox").check();
   await page
-    .getByRole("button", { name: "Preview appointment request" })
+    .getByRole("button", { name: "Continue to WhatsApp", exact: true })
     .click();
-  await expect(page.locator(".form-status[role=alert]")).toContainText(
-    "could not be delivered",
-  );
+  const retry = page.getByRole("link", { name: "Open WhatsApp again" });
+  await expect(retry).toBeVisible();
+  const message = new URL((await retry.getAttribute("href"))!).searchParams.get(
+    "text",
+  )!;
+  expect(message).toContain("*General area of interest:* Please guide me");
+  expect(message).toContain("Flexible — please suggest an available day");
   await expect(page.getByLabel("Full name", { exact: true })).toHaveValue(
-    "Preview Visitor",
+    "Sample Visitor",
   );
+  await expect(page.getByLabel("Phone number", { exact: true })).toHaveValue(
+    "9876543210",
+  );
+  await page.getByLabel("Full name", { exact: true }).fill("Updated Visitor");
+  await expect(retry).toHaveCount(0);
 });
+
 test("all pages meet automated WCAG checks on desktop and mobile", async ({
   page,
 }) => {
@@ -296,7 +362,7 @@ test("service previews support browsing, direct links and persistent keyboard fo
   await expect(next).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(preview.getByRole("heading", { level: 3 })).toHaveText(
-    "TECAR & Laser Therapy",
+    "Laser Therapy",
   );
   await expect(next).toBeFocused();
   await expect(
@@ -319,7 +385,7 @@ test("service previews support browsing, direct links and persistent keyboard fo
     preview.getByRole("link", { name: "Explore this care" }),
   ).toHaveAttribute("href", "/services/pilates-training");
   await expect(preview.getByRole("status")).toHaveText(
-    "Pilates Training, 7 of 7",
+    "Pilates Training, 8 of 8",
   );
 });
 
@@ -386,11 +452,31 @@ test("About page explains care and supports keyboard navigation through the visi
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/about");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Physiotherapy for everyday movement.",
+    "About Dr. Priyanka Taelkar (PT)",
   );
   await expect(
     page.getByRole("link", { name: "Request an assessment", exact: true }),
   ).toHaveAttribute("href", "/request-appointment");
+  await page
+    .getByRole("link", { name: "View qualifications", exact: true })
+    .click();
+  await expect(page).toHaveURL(/#doctor-qualifications$/);
+  const credentials = page.locator("#doctor-qualifications");
+  await expect(credentials).toBeFocused();
+  await expect(credentials.getByRole("listitem")).toHaveCount(9);
+  for (const label of [
+    "B.P.Th. & M.P.Th. (G.M.C., Nagpur)",
+    "DOMTP (Canada)",
+    "FNMT (Mumbai)",
+    "POMT (Pune)",
+    "Diploma in Hijama & Cupping",
+    "Certified Taping Specialist",
+    "Pilates Trainer",
+    "Health Coach",
+    "M.Sc. Osteopathy",
+  ]) {
+    await expect(credentials.getByText(label, { exact: true })).toHaveCount(1);
+  }
   await page
     .getByRole("navigation", { name: "Explore the About page" })
     .getByRole("link", { name: /Your first visit/ })

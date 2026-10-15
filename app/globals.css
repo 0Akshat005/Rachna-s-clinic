@@ -1631,3 +1631,7 @@ details[open] .faq-symbol:after {
     border-top: 1px solid #b8c7bd;
   }
 }
+
+/* WhatsApp enquiry handoff remains readable beside the existing form fields. */
+.booking-form .form-status .text-link { margin-top: 16px; font-size: 14px; }
+.booking-form .form-note { line-height: 1.75; }

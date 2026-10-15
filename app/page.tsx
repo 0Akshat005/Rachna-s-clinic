@@ -92,7 +92,8 @@ export default function Home() {
               physiotherapist can explain which approaches may suit your needs.
             </p>
             <div className="therapy-links">
-              <Link href="/services/tecar-laser-therapy">Tecar & Laser</Link>
+              <Link href="/services/laser-therapy">Laser Therapy</Link>
+              <Link href="/services/tecar-therapy">TECAR Therapy</Link>
               <Link href="/services/dry-needling">Dry Needling</Link>
               <Link href="/services/osteopathy-matrix-rhythm-therapy">
                 Osteopathy & Matrix Rhythm

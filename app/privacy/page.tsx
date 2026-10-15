@@ -2,9 +2,10 @@ import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { callHref, clinic } from "@/lib/clinic-profile";
 import { pageMetadata } from "@/lib/seo";
+
 export const metadata = pageMetadata(
   "Privacy Notice",
-  "How the Rachana website handles appointment request details, external links and your privacy.",
+  "How the Rachana website prepares WhatsApp appointment enquiries and handles external links and your privacy.",
   "/privacy",
 );
 export default function Privacy() {
@@ -13,79 +14,74 @@ export default function Privacy() {
       <PageHero
         eyebrow="Privacy notice"
         title="Your details deserve thoughtful care."
-        description="This notice explains the website’s appointment-request workflow. The clinic must review and approve this notice before online requests are activated."
+        description="How your details are prepared for an enquiry and shared when you choose to continue to WhatsApp. This notice remains subject to clinic review."
         booking={false}
       />
       <article className="container section legal-content">
-        <p>Prepared for clinic review: 9 October 2026.</p>
+        <p>Updated for clinic review: 15 October 2026.</p>
         <h2>Who handles your information?</h2>
         <p>
           {clinic.name}, {clinic.address}. To discuss this notice or make a
           privacy request,{" "}
           <a href={callHref}>contact the clinic on {clinic.phoneDisplay}</a>.
-          The clinic’s designated privacy contact and applicable retention
-          periods must be confirmed before activation.
+          The clinic’s designated privacy contact and retention periods are
+          awaiting confirmation.
         </p>
-        <h2>What the form asks for</h2>
+        <h2>What the enquiry form asks for</h2>
         <p>
-          The form asks for a name and telephone number. A general area of
-          interest and preferred day are optional. It records your agreement to
-          be contacted about the request. Do not submit detailed symptoms,
-          medical records, diagnostic reports or payment information through
-          this form.
+          The form asks for your name and callback number. A general area of
+          interest and preferred day are optional. You must agree to share the
+          details with WhatsApp and the clinic before continuing. Please keep
+          detailed symptoms, medical reports, diagnostic information and payment
+          details for an appropriate conversation with your practitioner.
         </p>
-        <h2>Preview and live requests</h2>
+        <h2>How the WhatsApp enquiry works</h2>
         <p>
-          In preview mode, the server validates the sample form and returns a
-          preview response. It does not store or deliver the contact details. In
-          live mode, the request is sent to the clinic’s configured email inbox
-          through Resend, a transactional email processor. The request is
-          pending until staff confirm an appointment. No patient account or
-          public request database is created.
+          The form prepares a message in your browser. Choosing Continue to
+          WhatsApp opens a chat link for {clinic.phoneDisplay} with those
+          details included. WhatsApp may process the information when you open
+          that link, under its own privacy terms. Review the prepared message
+          and tap Send in WhatsApp to share it with the clinic. Opening the chat
+          does not send a message or confirm an appointment.
         </p>
-        <h2>How information is used</h2>
+        <h2>Where your form details are kept</h2>
         <p>
-          Live request details are used to contact you, discuss availability and
-          manage the appointment enquiry. They are not used by this website for
-          advertising or marketing. Access to the clinic inbox must be
-          restricted to authorised staff. The clinic must establish an approved
-          retention and deletion schedule for that inbox and processor records
-          before live use.
+          This enquiry form does not send your details to the website’s server,
+          store them in a website database or browser storage, or email them.
+          The entered details remain in the form while the page is open so you
+          can correct or retry the enquiry. WhatsApp and your browser may handle
+          chat links, messages and history according to their own settings and
+          policies.
         </p>
-        <h2>Security and spam prevention</h2>
+        <h2>How the clinic uses your message</h2>
         <p>
-          The website uses server validation, origin checks, rate limiting and a
-          hidden anti-spam field. A keyed hash of a platform-provided IP
-          address, where available, is used for short-lived rate limiting in
-          Redis; the raw IP address is not stored by this application.
-          Rate-limit keys expire after 15 minutes. Hosting and email providers
-          may maintain their own operational records. Application logs contain
-          event names and opaque request references, rather than names, phone
-          numbers or clinical details.
+          After you send the message in WhatsApp, the clinic can use it to
+          discuss availability and arrange your visit. An appointment is
+          confirmed only after you agree the details with the clinic. The clinic
+          must confirm who can access its WhatsApp account and establish its
+          retention, deletion and privacy-request procedures.
         </p>
         <h2>External services</h2>
         <p>
-          Call, WhatsApp and Google Maps links open services with their own
-          privacy terms. The Contact page includes an embedded Google Maps map,
-          which may load automatically as you browse the page and connect your
-          browser to Google. Google’s own privacy terms apply to that map. The
-          website itself includes no additional advertising trackers or
-          analytics cookies.
+          Calls, WhatsApp and Google Maps use services with their own privacy
+          terms. The Contact page includes an embedded Google Maps map, which
+          may load automatically as you browse the page and connect your browser
+          to Google. Google’s own privacy terms apply to that map. The website
+          itself includes no additional advertising trackers or analytics
+          cookies.
         </p>
         <h2>Your choices</h2>
         <p>
-          You may contact the clinic directly instead of using the website form.
-          For a live request, contact the clinic to ask about access,
-          correction, withdrawal or deletion, subject to applicable obligations.
-          The clinic must provide a reviewed process for responding to these
-          requests before launch.
+          You can edit the prepared message, decide not to send it, or call the
+          clinic instead. Contact the clinic about access, correction,
+          withdrawal or deletion of a message you have shared, subject to
+          applicable obligations.
         </p>
-        <h2>Review before launch</h2>
+        <h2>Clinic review</h2>
         <p>
-          The clinic must confirm the controller/contact details, lawful basis,
-          processor arrangements, retention schedule and applicable obligations
-          with appropriate local advice. This draft describes the implemented
-          workflow and awaits clinic approval.
+          The clinic must review its contact details, privacy responsibilities,
+          processor arrangements and retention procedures. This draft describes
+          the implemented enquiry workflow and awaits clinic approval.
         </p>
         <Link className="button button-outline" href="/contact">
           Contact the clinic →

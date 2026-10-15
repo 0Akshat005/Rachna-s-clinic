@@ -65,13 +65,34 @@ await sharp("assets/source/hero-physiotherapy.png")
   .webp({ quality: 88 })
   .toFile("public/illustrations/hero-physiotherapy.webp");
 
-// Preserve the client-supplied TECAR & Laser Therapy photo.
+// Preserve the client-supplied About page photo.
+await sharp("assets/source/aboutimg.png")
+  .webp({ quality: 90 })
+  .toFile("public/images/aboutimg.webp");
+
+// Preserve the client-supplied Laser Therapy photo.
+await sharp("assets/source/tecar-laser-therapy.jpg")
+  .webp({ quality: 90 })
+  .toFile("public/illustrations/laser-therapy.webp");
+await sharp("assets/source/tecar-laser-therapy.jpg")
+  .webp({ quality: 90 })
+  .toFile("public/images/laser-therapy.webp");
 await sharp("assets/source/tecar-laser-therapy.jpg")
   .webp({ quality: 90 })
   .toFile("public/illustrations/tecar-laser-therapy.webp");
 await sharp("assets/source/tecar-laser-therapy.jpg")
   .webp({ quality: 90 })
   .toFile("public/images/tecar-laser-therapy.webp");
+
+// Preserve TECAR Therapy clinical illustration.
+await sharp("assets/source/service-tecar-therapy.jpg")
+  .resize({ width: 1440, withoutEnlargement: true })
+  .webp({ quality: 88 })
+  .toFile("public/illustrations/service-tecar-therapy.webp");
+await sharp("assets/source/service-tecar-therapy.jpg")
+  .resize({ width: 1440, withoutEnlargement: true })
+  .webp({ quality: 88 })
+  .toFile("public/images/service-tecar-therapy.webp");
 
 // Panoramic hero: preserve the continuous room and its text-safe wall.
 await sharp("assets/source/hero-cinematic.png")

@@ -2,6 +2,15 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: { formats: ["image/avif", "image/webp"] },
+  async redirects() {
+    return [
+      {
+        source: "/services/tecar-laser-therapy",
+        destination: "/services/laser-therapy",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     const scripts =
       process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : "";

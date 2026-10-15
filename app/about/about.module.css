@@ -20,7 +20,7 @@
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.055em;
-  max-width: 12ch;
+  max-width: 18ch;
   text-wrap: balance;
 }
 .heroCopy :global(.eyebrow) {
@@ -63,7 +63,7 @@
 }
 .heroImage {
   position: relative;
-  aspect-ratio: 1.26;
+  aspect-ratio: 4 / 3;
   background: #e4ebe5;
   overflow: hidden;
 }
@@ -76,14 +76,15 @@
 }
 .pageIndex {
   display: grid;
-  grid-template-columns: 0.6fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: center;
   border-top: 1px solid #c9d3c9;
   margin-top: 32px;
   padding-block: 16px;
 }
 .pageIndex > p {
-  margin: 0;
+  grid-column: 1 / -1;
+  margin: 0 0 10px;
   font-size: 12px;
   color: #52645b;
 }
@@ -417,8 +418,13 @@
   .heroPurpose {
     max-width: 62ch;
   }
+  .heroPhoto {
+    max-width: 640px;
+    width: 100%;
+    margin-inline: auto;
+  }
   .heroImage {
-    aspect-ratio: 1.75;
+    aspect-ratio: 4 / 3;
   }
   .careGrid,
   .visitGrid {
@@ -473,14 +479,18 @@
   .visitLink {
     font-size: 13px;
   }
+  .heroPhoto {
+    max-width: none;
+    margin-inline: 0;
+  }
   .heroImage {
-    aspect-ratio: 1.25;
+    aspect-ratio: 4 / 3;
   }
   .heroPhoto figcaption {
     font-size: 10px;
   }
   .pageIndex {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px 0;
     padding-block: 16px;
     margin-top: 22px;
@@ -622,5 +632,16 @@
   .visitPreparation p,
   .visitSteps .stepBody {
     font-size: 16px;
+  }
+}
+
+.pageIndex > a:first-of-type {
+  border-left: 0;
+  padding-left: 0;
+}
+@media (max-width: 767px) {
+  .pageIndex > a:nth-of-type(odd) {
+    border-left: 0;
+    padding-left: 0;
   }
 }

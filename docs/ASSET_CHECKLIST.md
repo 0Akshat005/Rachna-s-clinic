@@ -18,9 +18,9 @@ Place approved WebP/AVIF photographs under public/images and update content/medi
 
 Use meaningful plain alt text and a short caption for original photos. Retain originals and consent records in restricted clinic storage, rather than the public website. All media paths must start with /images/ for release.
 
-The original practitioner name and credentials are purposely not inferred from draft screenshots. Update the approved practitioner fields independently of photography.
+The client has supplied the practitioner name and nine credentials directly; these are now recorded in content/clinic.json. Their approval is independent of photography. The existing approved About image at /images/aboutimg.webp is retained with its supplied alt text and crop; no new portrait or identity claim has been created.
 
-After replacement, inspect desktop and mobile crops and run the release checker. The clinic gallery automatically switches to photographs when its configured entries are approved; the About-page doctor slot switches to the supplied portrait. The homepage keeps the compact text introduction from the finalized design. Approved homepage photography is also used in social metadata.
+After replacement, inspect desktop and mobile crops and run the release checker. The clinic gallery automatically switches to photographs when its configured entries are approved. The About hero uses features / about-therapy.webp, currently pointing to the existing approved /images/aboutimg.webp photo; the separate doctor portrait slot remains optional and unconfigured. The homepage keeps its compact text introduction. Approved homepage photography is also used in social metadata.
 
 ## Homepage hero update — 13 October 2026
 

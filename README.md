@@ -34,23 +34,29 @@ Node.js 20.9+ is required. Use Node 22 or a current supported LTS. Fonts are bun
 
 ## Finalized design reference
 
-The layout was revised around the supplied finalized homepage inspiration. Marketing pages use a fluid grid with 5% desktop side gutters rather than a centered 1280px cap. Home combines a full-bleed hero image, compact concern navigation, a sage introduction band, numbered service rows, a navy process section, split FAQ/contact sections and a reference-inspired footer with quick links, all seven services, full address, two contact numbers, weekday/Sunday hours and the exact Designed & Developed by BizLeap credit. Mobile adapts to 20px/18px gutters and stacked content. The working booking flow remains available throughout.
+The layout was revised around the supplied finalized homepage inspiration. Marketing pages use a fluid grid with 5% desktop side gutters rather than a centered 1280px cap. Home combines a full-bleed hero image, compact concern navigation, a sage introduction band, numbered service rows, a navy process section, split FAQ/contact sections and a reference-inspired footer with quick links, all seven services, full address, the clinic’s active contact number, weekday/Sunday hours and the exact Designed & Developed by BizLeap credit. Mobile adapts to 20px/18px gutters and stacked content. The working booking flow remains available throughout.
 
 Shared foundations live in app/globals.css; homepage sections live in app/editorial.css; the panoramic banner lives in app/home-hero.css and components/hero-media.tsx; the expanded footer is scoped in components/site-footer.module.css. Interaction styling lives in app/motion.css, with a small route-aware components/site-motion.tsx controller. The numbered home services use components/service-showcase.tsx for image previews on hover/focus and previous/next controls on touch or keyboard. The supplied footer screenshot's hours are held separately in clinic.json referenceOpeningHours while approved hours remain pending. The approved service images and client-supplied Spine Care illustration are preserved. The panoramic hero is labelled as an illustrative generated scene; authentic clinic photography remains a production asset requirement.
 
 Motion uses native browser APIs and CSS without an animation dependency. Marketing content is readable before JavaScript runs; text stays at full opacity during transitions. Entrances play once as sections come into view, focus cancels an entrance on the focused region, and changes to the reduced-motion preference cancel active movement and image fades. The hero image retains its existing responsive art direction and preload behavior. FAQs remain native keyboard-accessible details/summary controls.
 
-The About page uses its own server-rendered editorial layout in app/about/page.tsx and app/about/about.module.css. It explains the clinic's purpose, connects patient concerns to care options and provides a native first-visit disclosure guide. Its image is registered in content/media.json and explicitly labelled illustrative. Verified practitioner information appears when the existing clinic approval settings and profile are supplied. Reproduce six-width visual captures with `node scripts/review-about.mjs`.
+The About page uses its own server-rendered editorial layout in app/about/page.tsx and app/about/about.module.css. It explains the clinic's purpose, connects patient concerns to care options and provides a native first-visit disclosure guide. The existing approved About image is registered in content/media.json. The client-supplied Dr. Priyanka Taelkar (PT) profile and all nine credentials are displayed using the separate practitioner.approved flag in content/clinic.json. Qualifications use label/group entries (academic, specialist or roles) and render as three semantic lists. This scoped content approval does not activate unrelated clinic, indexing or booking settings. Reproduce six-width visual captures with `node scripts/review-about.mjs`.
 
-## Booking modes
+## WhatsApp enquiries — current public flow
 
-The default is **preview**. The real API validates the form, but does not store or deliver contact details. The form and completion message state this explicitly.
+The shared form is available on Contact (/contact#contact-enquiry) and /request-appointment. After validation and consent, it opens a prefilled WhatsApp chat for **+91 92092 91738**. The message contains the visitor’s name, callback number, optional general area and a readable preferred day. The visitor reviews the message and taps Send in WhatsApp; opening the chat does not deliver a message or confirm an appointment. A persistent retry link remains available, and entered details are retained if an app or new-window handoff is unavailable.
 
-Live mode sends an appointment request to the clinic's authorised inbox through Resend. A successful response means the provider accepted the notification, **not that an appointment is confirmed or that delivery to the inbox is guaranteed**. Staff use the inbox to contact the patient and manage pending/contacted/confirmed/closed enquiries. No application database is required for this MVP.
+The current public form does not POST to the email endpoint, store details in a website database or browser storage, or require Resend/Redis credentials. WhatsApp URLs and telephone links derive from the active phone in content/clinic.json, so they share the same recipient. The inactive secondary number has been removed from public configuration and the footer. Message wording is maintained in lib/whatsapp.ts.
 
-Resend deduplicates identical notification retries for 24 hours. Retries use the same key and email body. The form preserves the key after failure when the visitor retains the same details. A changed form creates a new key. Monitor the email provider for bounces and delivery failures; configure the clinic's operational response process before launch.
+This uses [WhatsApp’s official click-to-chat format](https://faq.whatsapp.com/5913398998672934). A WhatsApp account/app or WhatsApp Web is needed to complete the chat. Fully automatic server-to-WhatsApp delivery would be a separate WhatsApp Business Platform integration requiring an authorised sender and credentials; it is not claimed by this flow.
 
-## Activate production requests
+## Optional email backend — not used by the public forms
+
+The existing /api/appointment-requests route and its validation, consent, spam controls and delivery tests are retained. BOOKING_MODE controls this endpoint only. Its default preview mode validates without storage or delivery; live mode can notify an approved clinic inbox through Resend after the setup below. The website’s current forms always use the WhatsApp handoff and do not switch to email when BOOKING_MODE changes.
+
+Resend delivery uses retry/idempotency controls and fails closed if its credentials or clinic approvals are missing. Enabling email would require explicitly connecting a reviewed frontend flow and checking its receipt/error wording.
+
+## Optional email endpoint activation
 
 1. Copy `.env.example` to `.env.local`; on Vercel enter the corresponding values in the project's production environment.
 2. Set `SITE_URL` to the approved HTTPS domain.
@@ -70,7 +76,7 @@ The live endpoint also fails closed when core credentials or content/privacy app
 ## Still needed from the clinic
 
 - Final trading name and logo artwork; exact address and map pin; phone/WhatsApp; current hours including Sunday.
-- Approved practitioner name/title, qualifications, registration where authorised, biography and any first-person quote.
+- Any authorised practitioner registration, biography or first-person quote the clinic wants added. The supplied name/title and nine credentials are already included; these additional details are optional and have not been inferred.
 - Approval of the seven services and all patient-facing clinical descriptions.
 - Fees, duration, referral/cancellation policies and first-visit guidance.
 - Six to ten authentic photos and documented patient/model consent.
@@ -106,9 +112,9 @@ For service-directory crops, six viewport widths, filtering, reduced motion and 
 
 For settled desktop/mobile screenshots and service/FAQ interaction captures, run `node scripts/review-motion.mjs` while the local preview is running.
 
-Browser tests expect preview mode at `http://localhost:3000` and start the production server if necessary. Screenshots are saved under ignored `artifacts/`. Use sample contact details for preview testing.
+Browser tests use the WhatsApp form flow and intercept outbound WhatsApp navigation, with no real message delivery. The retained email API remains in preview mode for its separate tests. They run at `http://localhost:3000` and start the production server if necessary. Screenshots are saved under ignored `artifacts/`. Use sample contact details for preview testing.
 
-A provider API/Redis test double verifies live delivery paths without contacting a real staff inbox. Real delivery, physical-device call behavior, exact map location and field Core Web Vitals require production setup.
+A provider API/Redis test double verifies the optional email backend’s live delivery paths without contacting a real staff inbox. Real delivery, physical-device call behavior, exact map location and field Core Web Vitals require production setup.
 
 ## Reference documentation
 

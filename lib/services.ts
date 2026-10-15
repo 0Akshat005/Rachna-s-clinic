@@ -102,31 +102,52 @@ export const services: Service[] = [
     alt: "Clinical cupping therapy procedure with suction cups applied along a patient's back by a practitioner",
   },
   {
-    slug: "tecar-laser-therapy",
-    name: "TECAR & Laser Therapy",
+    slug: "laser-therapy",
+    name: "Laser Therapy",
     category: "Specialist modalities",
     number: "05",
     summary:
-      "Device-based care using radiofrequency energy (TECAR) or laser light, selected after an assessment.",
-    heading: "Your assessment comes before the equipment.",
+      "Targeted light energy applied to joint and soft-tissue areas, selected following a clinical assessment.",
+    heading: "Focused light energy to support tissue recovery.",
     audience:
-      "People who would like to understand TECAR or laser therapy can ask about the equipment and its intended role. The availability of a device is not a recommendation to use it.",
+      "People wanting to explore non-invasive light therapy for persistent joint discomfort, tendon irritation or localized inflammation can discuss suitability with the clinic.",
     assessment:
-      "Your physiotherapist can discuss why an equipment-based technique is being considered, whether it is suitable, and what alternatives exist. Ask about the relevant precautions and expected review process.",
+      "Your physiotherapist evaluates joint movement, tissue sensitivity and relevant history. They explain how targeted light interacts with cells, the expected sensation, precautions and appropriate alternatives.",
     discussion: [
-      "Why a device is being considered",
-      "Precautions and individual suitability",
-      "Other options and when the plan is reviewed",
+      "The clinical role and mechanism of laser therapy",
+      "Suitability, safety checks and contraindications",
+      "Follow-up milestones and complementary exercises",
     ],
-    image: "tecar-laser-therapy.webp",
-    cardImageNote: "Laser procedure shown",
+    image: "laser-therapy.webp",
+    cardImageNote: "Clinical laser procedure shown",
     alt: "Physiotherapist administering targeted laser therapy to a patient's knee using specialized equipment",
+  },
+  {
+    slug: "tecar-therapy",
+    name: "TECAR Therapy",
+    category: "Specialist modalities",
+    number: "06",
+    summary:
+      "High-frequency radiofrequency energy generating deep cellular warmth to support muscle and soft-tissue relaxation.",
+    heading: "Targeted radiofrequency warmth for deep tissue recovery.",
+    audience:
+      "People seeking relief from chronic muscle tightness, stiff tendons, joint soreness or acute sports strains can explore whether TECAR therapy fits their treatment plan.",
+    assessment:
+      "Your physiotherapist examines tissue depth, muscle tone and contraindications. They discuss the difference between capacitive (soft tissue) and resistive (tendon/joint) modes and describe what you will feel during treatment.",
+    discussion: [
+      "Capacitive and resistive radiofrequency modes",
+      "Expected soothing warmth and safety checks",
+      "How TECAR pairs with active rehabilitation",
+    ],
+    image: "service-tecar-therapy.webp",
+    cardImageNote: "TECAR procedure shown",
+    alt: "Physiotherapist applying specialized TECAR radiofrequency therapy probe to a patient's shoulder",
   },
   {
     slug: "sports-injury-rehabilitation",
     name: "Sports Injury Rehabilitation",
     category: "Rehabilitation",
-    number: "06",
+    number: "07",
     summary:
       "Guided exercises and movement practice for a return to sport or regular activity.",
     heading: "Your next chapter of movement starts here.",
@@ -146,7 +167,7 @@ export const services: Service[] = [
     slug: "pilates-training",
     name: "Pilates Training",
     category: "Strength & Pilates",
-    number: "07",
+    number: "08",
     summary:
       "Controlled, guided exercises focused on strength, posture and body awareness, adapted to your starting point.",
     heading: "Build a thoughtful relationship with movement.",
@@ -170,7 +191,7 @@ export const serviceCategories = [
   "Specialist modalities",
   "Strength & Pilates",
 ] as const;
-export const featuredServices = [services[0], services[5], services[6]];
+export const featuredServices = [services[0], services[6], services[7]];
 
 export function serviceCategoryLabel(category: string) {
   return category === "Specialist modalities"

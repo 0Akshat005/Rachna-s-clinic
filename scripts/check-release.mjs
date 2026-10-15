@@ -32,6 +32,7 @@ for (const key of [
   if (!clinic[key]) missing.push("clinic.json: " + key);
 if (!clinic.hours.length) missing.push("Approved current opening hours");
 if (
+  !clinic.practitioner.approved ||
   !clinic.practitioner.displayName ||
   !clinic.practitioner.title ||
   !clinic.practitioner.qualifications.length

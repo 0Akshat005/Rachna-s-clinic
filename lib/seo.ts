@@ -3,6 +3,7 @@ import media from "@/content/media.json";
 import {
   clinic,
   factsApproved,
+  practitionerApproved,
   indexingEnabled,
   siteUrl,
 } from "./clinic-profile";
@@ -57,13 +58,16 @@ export function localBusinessSchema() {
     },
     ...(clinic.hours.length ? { openingHours: clinic.hours } : {}),
     ...(hero.approved ? { image: new URL(hero.src, siteUrl).toString() } : {}),
-    ...(clinic.practitioner.displayName
+    ...(practitionerApproved
       ? {
           employee: {
             "@type": "Person",
             name: clinic.practitioner.displayName,
+            ...(clinic.practitioner.designation
+              ? { honorificSuffix: clinic.practitioner.designation }
+              : {}),
             ...(clinic.practitioner.title
-              ? { jobTitle: clinic.practitioner.title }
+              ? { honorificPrefix: clinic.practitioner.title }
               : {}),
           },
         }

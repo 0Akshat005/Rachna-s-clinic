@@ -36,7 +36,7 @@ try {
   await page.waitForFunction(
     () =>
       document.querySelector("#service-preview h3")?.textContent ===
-      "TECAR & Laser Therapy",
+      "Laser Therapy",
   );
   await page.waitForFunction(
     () =>

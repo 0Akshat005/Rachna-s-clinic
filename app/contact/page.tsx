@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AppointmentEnquiry } from "@/components/appointment-enquiry";
 import { PageHero } from "@/components/page-hero";
 import { Icon } from "@/components/icon";
 import { ClinicMap } from "@/components/clinic-map";
@@ -6,6 +7,7 @@ import { FaqAccordion } from "@/components/faq-accordion";
 import { LocationSection } from "@/components/location-section";
 import { clinic, callHref, whatsappHref } from "@/lib/clinic-profile";
 import { pageMetadata } from "@/lib/seo";
+export const dynamic = "force-dynamic";
 export const metadata = pageMetadata(
   "Contact & Visit Rachana in Manish Nagar",
   "Call Rachana Physiotherapy Clinic, enquire on WhatsApp, request an appointment or find directions to Manish Nagar, Nagpur.",
@@ -55,16 +57,17 @@ export default function Contact() {
             <Icon name="calendar" />
             <h2>Request a time.</h2>
             <p>
-              Share a few basic contact details. The clinic will respond to
-              discuss an available appointment.
+              Prepare your appointment details, then review and send the message
+              to the clinic on WhatsApp.
             </p>
-            <Link className="text-link" href="/request-appointment">
-              Request an appointment
+            <Link className="text-link" href="#contact-enquiry">
+              Fill the enquiry form
               <Icon name="arrow" />
             </Link>
           </article>
         </div>
       </section>
+      <AppointmentEnquiry />
       <LocationSection />
       <section className="section">
         <div className="container">

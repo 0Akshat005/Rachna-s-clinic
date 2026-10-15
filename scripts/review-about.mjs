@@ -27,12 +27,24 @@ try {
           document.documentElement.scrollWidth >
           document.documentElement.clientWidth,
         headline: document.querySelector("h1").textContent,
+        qualificationCount: document.querySelectorAll(
+          "#doctor-qualifications li",
+        ).length,
       })),
     );
     await page.screenshot({
       path: "artifacts/about-redesign-" + width + ".png",
       fullPage: width === 1440 || width === 390,
     });
+    if ([320, 390, 1440].includes(width)) {
+      await page
+        .locator("#doctor-qualifications")
+        .screenshot({
+          path: "artifacts/doctor-credentials-" + width + ".png",
+          style:
+            ".site-header, .mobile-dock { visibility: hidden !important; }",
+        });
+    }
     if (width === 1440 || width === 390) {
       await page
         .locator('nav[aria-label="Explore the About page"]')

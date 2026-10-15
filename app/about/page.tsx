@@ -5,7 +5,7 @@ import { DoctorSection } from "@/components/doctor-section";
 import {
   clinic,
   callHref,
-  factsApproved,
+  practitionerName,
   mapsHref,
 } from "@/lib/clinic-profile";
 import { pageMetadata } from "@/lib/seo";
@@ -13,8 +13,8 @@ import media from "@/content/media.json";
 import styles from "./about.module.css";
 
 export const metadata = pageMetadata(
-  "About Rachana & Your First Physiotherapy Visit",
-  "Understand Rachana Physiotherapy Clinic in Manish Nagar, Nagpur: the care you can explore, how assessment starts and what to expect at your first visit.",
+  "About " + practitionerName,
+  "Meet Dr. Priyanka Taelkar (PT) at Rachana Physiotherapy Clinic in Manish Nagar, Nagpur. Explore her qualifications, training and first-visit guidance.",
   "/about",
 );
 
@@ -66,7 +66,6 @@ const visitSteps = [
 
 export default function About() {
   const image = media.features["about-therapy.webp"];
-  const hasPractitioner = factsApproved && clinic.practitioner.displayName;
   return (
     <>
       <section className={styles.hero} aria-labelledby="about-heading">
@@ -83,16 +82,16 @@ export default function About() {
           </nav>
           <div className={styles.heroGrid}>
             <div className={styles.heroCopy}>
-              <p className="eyebrow">About Rachana</p>
-              <h1 id="about-heading">Physiotherapy for everyday movement.</h1>
+              <p className="eyebrow">Your physiotherapist</p>
+              <h1 id="about-heading">About {practitionerName}</h1>
               <p className={styles.intro}>
-                At Rachana Physiotherapy Clinic in Manish Nagar, Nagpur, we
-                offer care for back and neck concerns, injury rehabilitation and
-                guided movement.
+                Meet your physiotherapist at Rachana Physiotherapy Clinic in
+                Manish Nagar, Nagpur.
               </p>
               <p className={styles.heroPurpose}>
-                Our aim is to help you understand your care and work towards the
-                everyday activities that matter to you.
+                Explore her academic qualifications, specialist training and
+                professional roles, and find out what to expect at your first
+                visit.
               </p>
               <div className={styles.heroActions}>
                 <Link
@@ -103,10 +102,10 @@ export default function About() {
                   <Icon name="arrow" />
                 </Link>
                 <a
-                  href="#your-first-visit"
+                  href="#doctor-qualifications"
                   className={"text-link " + styles.visitLink}
                 >
-                  Your first visit
+                  View qualifications
                   <Icon name="arrow" />
                 </a>
               </div>
@@ -120,7 +119,12 @@ export default function About() {
                   sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 900px) 90vw, 41vw"
                   loading="eager"
                   fetchPriority="high"
-                  style={{ objectFit: "cover", objectPosition: "center" }}
+                  style={{
+                    objectFit: "cover",
+                    objectPosition:
+                      (image as { objectPosition?: string }).objectPosition ||
+                      "center 35%",
+                  }}
                 />
               </div>
               {image.caption ? <figcaption>{image.caption}</figcaption> : null}
@@ -129,9 +133,10 @@ export default function About() {
           <nav className={styles.pageIndex} aria-label="Explore the About page">
             <p>On this page</p>
             {[
-              ["01", "The clinic", "#the-clinic"],
-              ["02", "Care options", "#care-options"],
-              ["03", "Your first visit", "#your-first-visit"],
+              ["01", "Qualifications", "#doctor-qualifications"],
+              ["02", "The clinic", "#the-clinic"],
+              ["03", "Care options", "#care-options"],
+              ["04", "Your first visit", "#your-first-visit"],
             ].map(([number, label, href]) => (
               <a href={href} key={href}>
                 <span aria-hidden="true">{number}</span>
@@ -143,6 +148,8 @@ export default function About() {
         </div>
       </section>
 
+      <DoctorSection />
+
       <section
         className={styles.purpose}
         id="the-clinic"
@@ -151,7 +158,7 @@ export default function About() {
       >
         <div className={"container " + styles.purposeGrid}>
           <p className={styles.sectionLabel}>
-            01 <span>The clinic</span>
+            02 <span>The clinic</span>
           </p>
           <h2 id="clinic-purpose-heading" data-reveal>
             An assessment first.
@@ -185,7 +192,7 @@ export default function About() {
       >
         <div className={"container " + styles.careGrid}>
           <div className={styles.sectionIntro} data-reveal>
-            <p className="eyebrow">02 · Care options</p>
+            <p className="eyebrow">03 · Care options</p>
             <h2 id="care-options-heading">
               What brings
               <br />
@@ -232,8 +239,6 @@ export default function About() {
         </div>
       </section>
 
-      {hasPractitioner ? <DoctorSection /> : null}
-
       <section
         className={styles.visitSection}
         id="your-first-visit"
@@ -242,7 +247,7 @@ export default function About() {
       >
         <div className={"container " + styles.visitGrid}>
           <div className={styles.sectionIntro} data-reveal>
-            <p className="eyebrow">03 · Your first visit</p>
+            <p className="eyebrow">04 · Your first visit</p>
             <h2 id="first-visit-heading">
               Know what to expect.
               <br />

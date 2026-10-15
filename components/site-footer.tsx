@@ -74,12 +74,6 @@ export function SiteFooter() {
                   <a href={callHref} aria-label={"Call " + clinic.phoneDisplay}>
                     {clinic.phoneDisplay}
                   </a>
-                  <a
-                    href={"tel:" + clinic.secondaryPhone}
-                    aria-label={"Call " + clinic.secondaryPhoneDisplay}
-                  >
-                    {clinic.secondaryPhoneDisplay}
-                  </a>
                 </div>
                 <a
                   className={styles.directions}
@@ -127,7 +121,8 @@ export function SiteFooter() {
             <div className={styles.meta}>
               <div className={styles.metaLeft}>
                 <p className={styles.copyright}>
-                  © {new Date().getFullYear()} {clinic.name}. All rights reserved.
+                  © {new Date().getFullYear()} {clinic.name}. All rights
+                  reserved.
                 </p>
                 <span className={styles.separator} aria-hidden="true">
                   •

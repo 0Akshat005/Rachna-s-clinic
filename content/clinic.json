@@ -7,14 +7,52 @@
   "address": "59, Nagar Vikas Society, beside Indian (Allahabad) Bank, near new underpass, Manish Nagar Railway Crossing Road, Manish Nagar, Somalwada, Nagpur, Maharashtra 440015",
   "phone": "+919209291738",
   "phoneDisplay": "+91 92092 91738",
-  "whatsapp": "919209291738",
   "practitioner": {
-    "displayName": "",
-    "title": "",
-    "qualifications": [],
+    "displayName": "Priyanka Taelkar",
+    "title": "Dr.",
+    "qualifications": [
+      {
+        "label": "B.P.Th. & M.P.Th. (G.M.C., Nagpur)",
+        "group": "academic"
+      },
+      {
+        "label": "DOMTP (Canada)",
+        "group": "specialist"
+      },
+      {
+        "label": "FNMT (Mumbai)",
+        "group": "specialist"
+      },
+      {
+        "label": "POMT (Pune)",
+        "group": "specialist"
+      },
+      {
+        "label": "Diploma in Hijama & Cupping",
+        "group": "specialist"
+      },
+      {
+        "label": "Certified Taping Specialist",
+        "group": "roles"
+      },
+      {
+        "label": "Pilates Trainer",
+        "group": "roles"
+      },
+      {
+        "label": "Health Coach",
+        "group": "roles"
+      },
+      {
+        "label": "M.Sc. Osteopathy",
+        "group": "academic"
+      }
+    ],
     "registration": "",
     "biography": [],
-    "quote": ""
+    "quote": "",
+    "designation": "PT",
+    "approved": true
   },
   "hours": [],
   "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3722.3805378371962!2d79.07273649999999!3d21.0973897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4bf73290ebbbf%3A0x2645c2a352999593!2sRachana%20Physiotherapy%20Clinic%2FOsteopathy%2FMatrix%20Rhythm%20Therapy%2FNeedling%2FHijama%20clinic!5e0!3m2!1sen!2sin!4v1791973650662!5m2!1sen!2sin",
@@ -26,8 +64,6 @@
   "sessionDuration": "Please contact the clinic to confirm the expected duration for your appointment.",
   "fees": "Please ask the clinic about assessment and follow-up fees before your visit.",
   "cancellationPolicy": "To change or cancel an appointment, contact the clinic. Confirm the applicable notice period when booking.",
-  "secondaryPhone": "+918460507249",
-  "secondaryPhoneDisplay": "+91 84605 07249",
   "referenceOpeningHours": [
     {
       "days": "Mon–Sat",
