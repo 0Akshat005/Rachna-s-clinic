@@ -36,8 +36,12 @@ export default function RootLayout({
 }) {
   const schema = localBusinessSchema();
   return (
-    <html lang="en" className={bodyFont.variable + " " + headingFont.variable}>
-      <body>
+    <html
+      lang="en"
+      className={bodyFont.variable + " " + headingFont.variable}
+      suppressHydrationWarning
+    >
+      <body suppressHydrationWarning>
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
