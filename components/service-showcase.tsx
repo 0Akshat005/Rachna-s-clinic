@@ -199,55 +199,61 @@ export function ServiceShowcase({
               />
             ) : null}
           </div>
-          {displayed.caption ? (
-            <figcaption>{displayed.caption}</figcaption>
+          {displayed.caption || selected.caption ? (
+            <figcaption>
+              {(index !== displayedIndex
+                ? selected.caption
+                : displayed.caption) || displayed.caption}
+            </figcaption>
           ) : null}
         </figure>
-        <div className="service-preview-detail">
-          <div className="service-preview-toolbar">
-            <p className="eyebrow">{selected.category}</p>
-            <div
-              className="service-preview-controls"
-              role="group"
-              aria-label={`Browse ${variant === "basic" ? "basic " : ""}service previews`}
-            >
-              <span className="service-preview-count" aria-hidden="true">
-                {selected.number}
-                <span> / {String(items.length).padStart(2, "0")}</span>
-              </span>
-              <button
-                type="button"
-                aria-label={`Preview previous ${variant === "basic" ? "basic " : ""}service`}
-                aria-controls={previewId}
-                onClick={() =>
-                  select((index + items.length - 1) % items.length, true)
-                }
+        {variant !== "basic" ? (
+          <div className="service-preview-detail">
+            <div className="service-preview-toolbar">
+              <p className="eyebrow">{selected.category}</p>
+              <div
+                className="service-preview-controls"
+                role="group"
+                aria-label="Browse service previews"
               >
-                <span className="previous-arrow">
-                  <Icon name="arrow" />
+                <span className="service-preview-count" aria-hidden="true">
+                  {selected.number}
+                  <span> / {String(items.length).padStart(2, "0")}</span>
                 </span>
-              </button>
-              <button
-                type="button"
-                aria-label={`Preview next ${variant === "basic" ? "basic " : ""}service`}
-                aria-controls={previewId}
-                onClick={() => select((index + 1) % items.length, true)}
-              >
+                <button
+                  type="button"
+                  aria-label="Preview previous service"
+                  aria-controls={previewId}
+                  onClick={() =>
+                    select((index + items.length - 1) % items.length, true)
+                  }
+                >
+                  <span className="previous-arrow">
+                    <Icon name="arrow" />
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  aria-label="Preview next service"
+                  aria-controls={previewId}
+                  onClick={() => select((index + 1) % items.length, true)}
+                >
+                  <Icon name="arrow" />
+                </button>
+              </div>
+            </div>
+            <div className="service-preview-copy" key={selected.slug}>
+              <h3>{selected.name}</h3>
+              <p className="service-preview-summary">{selected.summary}</p>
+            </div>
+            <div className="service-preview-bottom">
+              <Link href={getHref(selected)} className="text-link">
+                Explore this care
                 <Icon name="arrow" />
-              </button>
+              </Link>
             </div>
           </div>
-          <div className="service-preview-copy" key={selected.slug}>
-            <h3>{selected.name}</h3>
-            <p className="service-preview-summary">{selected.summary}</p>
-          </div>
-          <div className="service-preview-bottom">
-            <Link href={getHref(selected)} className="text-link">
-              Explore this care
-              <Icon name="arrow" />
-            </Link>
-          </div>
-        </div>
+        ) : null}
         <p className="sr-only" role="status">
           {announcement}
         </p>

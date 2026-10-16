@@ -529,27 +529,31 @@ test("landing page features 8 advanced services and 3 basic services with hover-
   ).toBeVisible();
 
   // Hover to preview on basic services
-  await basicIndex
-    .getByRole("link", { name: "Neuro Rehabilitation" })
-    .hover();
-  await expect(basicPreview.getByRole("heading", { level: 3 })).toHaveText(
-    "Neuro Rehabilitation",
-  );
-  await expect(
-    basicPreview.getByRole("link", { name: "Explore this care" }),
-  ).toHaveAttribute("href", "/basic-services/neuro-rehabilitation");
-
-  // Controls cycling on basic services preview
-  const nextBtn = basicSection.getByRole("button", {
-    name: "Preview next basic service",
+  const neuroLink = basicIndex.getByRole("link", {
+    name: "Neuro Rehabilitation",
   });
-  await nextBtn.click();
-  await expect(basicPreview.getByRole("heading", { level: 3 })).toHaveText(
-    "PEMF Therapy",
-  );
+  await neuroLink.hover();
+  await expect(neuroLink).toHaveAttribute("data-preview-active", "true");
   await expect(
-    basicPreview.getByRole("link", { name: "Explore this care" }),
-  ).toHaveAttribute("href", "/basic-services/pemf-therapy");
+    basicPreview.getByRole("img", {
+      name: /practicing balanced walking between parallel rehabilitation bars/,
+    }),
+  ).toBeVisible();
+  await expect(
+    basicPreview.getByText(
+      "Guided gait and balance retraining in a clinical rehabilitation setting",
+    ),
+  ).toBeVisible();
+
+  // Hover on PEMF Therapy to preview PEMF image
+  const pemfLink = basicIndex.getByRole("link", { name: "PEMF Therapy" });
+  await pemfLink.hover();
+  await expect(pemfLink).toHaveAttribute("data-preview-active", "true");
+  await expect(
+    basicPreview.getByRole("img", {
+      name: /pulsed electromagnetic/i,
+    }),
+  ).toBeVisible();
 
   // Explore All Basic Services CTA
   const exploreAllCta = basicSection.getByRole("link", {
