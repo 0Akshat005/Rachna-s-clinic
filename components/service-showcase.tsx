@@ -14,9 +14,40 @@ export type ServicePreview = {
   alt: string;
   caption: string;
   objectPosition: string;
+  href?: string;
 };
 
-export function ServiceShowcase({ items }: { items: ServicePreview[] }) {
+export type ServiceShowcaseProps = {
+  items: ServicePreview[];
+  eyebrow?: string;
+  badge?: string;
+  title?: React.ReactNode;
+  description?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  previewId?: string;
+  linkPrefix?: string;
+  variant?: "advanced" | "basic";
+};
+
+export function ServiceShowcase({
+  items,
+  eyebrow = "Our services",
+  badge,
+  title = (
+    <>
+      Specialised care.
+      <br />
+      Personal attention.
+    </>
+  ),
+  description,
+  ctaText = "Explore All Services",
+  ctaHref = "/services",
+  previewId = "service-preview",
+  linkPrefix = "/services/",
+  variant = "advanced",
+}: ServiceShowcaseProps) {
   const [index, setIndex] = useState(0);
   const [displayedIndex, setDisplayedIndex] = useState(0);
   const requestedIndex = useRef(0);
@@ -80,26 +111,45 @@ export function ServiceShowcase({ items }: { items: ServicePreview[] }) {
     );
   }
 
+  const getHref = (service: ServicePreview) =>
+    service.href || linkPrefix + service.slug;
+
   return (
-    <div className="container editorial-services-grid service-showcase">
+    <div
+      className={`container editorial-services-grid service-showcase ${
+        variant === "basic" ? "service-showcase-basic" : ""
+      }`}
+    >
       <div data-reveal>
-        <p className="eyebrow">Our services</p>
-        <h2>
-          Specialised care.
-          <br />
-          Personal attention.
-        </h2>
+        {badge ? <span className="basic-services-badge">{badge}</span> : null}
+        <p className="eyebrow">{eyebrow}</p>
+        <h2>{title}</h2>
+        {description ? (
+          <p className="service-showcase-description">{description}</p>
+        ) : null}
         <ol className="service-index">
           {items.map((service, i) => (
             <li key={service.slug}>
               <Link
-                href={"/services/" + service.slug}
+                href={getHref(service)}
                 data-preview-active={i === index}
                 onPointerEnter={() => previewOnHover(i)}
                 onPointerLeave={() => {
                   if (hoverTimer.current) clearTimeout(hoverTimer.current);
                 }}
                 onFocus={() => select(i)}
+                onPointerDown={(e) => {
+                  if (
+                    typeof window !== "undefined" &&
+                    window.matchMedia("(hover: none) or (pointer: coarse)")
+                      .matches
+                  ) {
+                    if (i !== index) {
+                      e.preventDefault();
+                      select(i, true);
+                    }
+                  }
+                }}
               >
                 <span className="index-number">{service.number}</span>
                 <span>{service.name}</span>
@@ -108,14 +158,14 @@ export function ServiceShowcase({ items }: { items: ServicePreview[] }) {
             </li>
           ))}
         </ol>
-        <Link href="/services" className="text-link editorial-link">
-          Explore All Services
+        <Link href={ctaHref} className="text-link editorial-link">
+          {ctaText}
           <Icon name="arrow" />
         </Link>
       </div>
       <div
         className="service-preview"
-        id="service-preview"
+        id={previewId}
         data-reveal
         data-reveal-delay="90"
       >
@@ -159,7 +209,7 @@ export function ServiceShowcase({ items }: { items: ServicePreview[] }) {
             <div
               className="service-preview-controls"
               role="group"
-              aria-label="Browse service previews"
+              aria-label={`Browse ${variant === "basic" ? "basic " : ""}service previews`}
             >
               <span className="service-preview-count" aria-hidden="true">
                 {selected.number}
@@ -167,8 +217,8 @@ export function ServiceShowcase({ items }: { items: ServicePreview[] }) {
               </span>
               <button
                 type="button"
-                aria-label="Preview previous service"
-                aria-controls="service-preview"
+                aria-label={`Preview previous ${variant === "basic" ? "basic " : ""}service`}
+                aria-controls={previewId}
                 onClick={() =>
                   select((index + items.length - 1) % items.length, true)
                 }
@@ -179,8 +229,8 @@ export function ServiceShowcase({ items }: { items: ServicePreview[] }) {
               </button>
               <button
                 type="button"
-                aria-label="Preview next service"
-                aria-controls="service-preview"
+                aria-label={`Preview next ${variant === "basic" ? "basic " : ""}service`}
+                aria-controls={previewId}
                 onClick={() => select((index + 1) % items.length, true)}
               >
                 <Icon name="arrow" />
@@ -192,7 +242,7 @@ export function ServiceShowcase({ items }: { items: ServicePreview[] }) {
             <p className="service-preview-summary">{selected.summary}</p>
           </div>
           <div className="service-preview-bottom">
-            <Link href={"/services/" + selected.slug} className="text-link">
+            <Link href={getHref(selected)} className="text-link">
               Explore this care
               <Icon name="arrow" />
             </Link>

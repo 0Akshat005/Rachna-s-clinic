@@ -11,6 +11,7 @@ import { ClinicGallery } from "@/components/clinic-gallery";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { LocationSection } from "@/components/location-section";
 import { services } from "@/lib/services";
+import { featuredBasicServices } from "@/lib/basic-services";
 import { whatsappHref } from "@/lib/clinic-profile";
 import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata(
@@ -79,6 +80,40 @@ export default function Home() {
                 "objectPosition" in image ? image.objectPosition : "center",
             };
           })}
+        />
+      </section>
+      <section
+        className="section editorial-services basic-services-section"
+        aria-labelledby="basic-services-heading"
+      >
+        <ServiceShowcase
+          variant="basic"
+          previewId="basic-services-preview"
+          badge="Basic Physiotherapy Services"
+          eyebrow="Foundational care"
+          title={
+            <span id="basic-services-heading">
+              Essential therapies.
+              <br />
+              Everyday recovery.
+            </span>
+          }
+          description="Targeted electrotherapy, supportive taping, and neurological rehabilitation to address discomfort, enhance muscle activation, and restore functional movement."
+          ctaText="Explore All Basic Services"
+          ctaHref="/basic-services"
+          linkPrefix="/basic-services/"
+          items={featuredBasicServices.map((service) => ({
+            slug: service.slug,
+            number: service.number,
+            name: service.name,
+            category: service.category,
+            summary: service.summary,
+            src: service.image,
+            alt: service.alt,
+            caption: service.caption || "",
+            objectPosition: "center center",
+            href: "/basic-services/" + service.slug,
+          }))}
         />
       </section>
       <CareJourney />

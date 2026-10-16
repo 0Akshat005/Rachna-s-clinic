@@ -9,6 +9,16 @@ const nextConfig: NextConfig = {
         destination: "/services/laser-therapy",
         permanent: true,
       },
+      {
+        source: "/services/basic",
+        destination: "/basic-services",
+        permanent: true,
+      },
+      {
+        source: "/services/basic-services",
+        destination: "/basic-services",
+        permanent: true,
+      },
     ];
   },
   async headers() {

@@ -17,7 +17,8 @@ export function PhotoFeature({
 }) {
   const selected = media.features[src as keyof typeof media.features];
   const approved = selected?.approved;
-  const imageSrc = selected?.src || "/illustrations/" + src;
+  const imageSrc =
+    selected?.src || (src.startsWith("/") ? src : "/illustrations/" + src);
   const aspectRatio =
     selected && "aspectRatio" in selected ? selected.aspectRatio : undefined;
   const objectPosition =

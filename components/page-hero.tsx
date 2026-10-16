@@ -9,6 +9,8 @@ export function PageHero({
   alt,
   booking = true,
   breadcrumb = "",
+  parentHref = "/services",
+  parentLabel = "Services",
 }: {
   eyebrow: string;
   title: string;
@@ -17,6 +19,8 @@ export function PageHero({
   alt?: string;
   booking?: boolean;
   breadcrumb?: string;
+  parentHref?: string;
+  parentLabel?: string;
 }) {
   return (
     <section className="page-hero">
@@ -29,7 +33,7 @@ export function PageHero({
             <span aria-hidden="true">/</span>
             {breadcrumb ? (
               <>
-                <Link href="/services">Services</Link>
+                <Link href={parentHref}>{parentLabel}</Link>
                 <span aria-hidden="true">/</span>
               </>
             ) : null}

@@ -3,6 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 const routes = [
   "/",
   "/services",
+  "/basic-services",
   "/about",
   "/contact",
   "/request-appointment",
@@ -105,7 +106,7 @@ test("Care Finder and service directory filters are usable", async ({
   await page
     .getByRole("button", { name: "Specialist therapies", exact: true })
     .click();
-  await expect(page.locator(".directory-grid article")).toHaveCount(4);
+  await expect(page.locator(".directory-grid article")).toHaveCount(5);
   await page
     .getByRole("button", { name: "Strength & Pilates", exact: true })
     .click();
@@ -119,7 +120,7 @@ test("Care Finder and service directory filters are usable", async ({
     pilatesCard.getByRole("link", { name: "Pilates Training", exact: true }),
   ).toHaveAttribute("href", "/services/pilates-training");
   await page.getByRole("button", { name: "All", exact: true }).click();
-  await expect(page.locator(".directory-grid article")).toHaveCount(7);
+  await expect(page.locator(".directory-grid article")).toHaveCount(8);
   for (const card of await page.locator(".directory-grid article").all()) {
     await expect(card.getByRole("img")).toHaveCount(1);
     await expect(card.getByRole("link")).toHaveCount(1);
@@ -496,3 +497,113 @@ test("About page explains care and supports keyboard navigation through the visi
     }),
   ).toHaveAttribute("href", "/services/sports-injury-rehabilitation");
 });
+
+test("landing page features 8 advanced services and 3 basic services with hover-to-preview", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  // 1. Existing 8 advanced services unchanged
+  const advancedPreview = page.locator("#service-preview");
+  await expect(advancedPreview).toBeVisible();
+  const advancedIndex = page
+    .locator(".editorial-services")
+    .first()
+    .locator(".service-index");
+  await expect(advancedIndex.locator("li")).toHaveCount(8);
+
+  // 2. Basic services section immediately below
+  const basicSection = page.locator(".basic-services-section");
+  await expect(basicSection).toBeVisible();
+  const basicPreview = page.locator("#basic-services-preview");
+  const basicIndex = basicSection.locator(".service-index");
+  await expect(basicIndex.locator("li")).toHaveCount(3);
+  await expect(
+    basicIndex.getByRole("link", { name: "Taping" }),
+  ).toBeVisible();
+  await expect(
+    basicIndex.getByRole("link", { name: "Neuro Rehabilitation" }),
+  ).toBeVisible();
+  await expect(
+    basicIndex.getByRole("link", { name: "PEMF Therapy" }),
+  ).toBeVisible();
+
+  // Hover to preview on basic services
+  await basicIndex
+    .getByRole("link", { name: "Neuro Rehabilitation" })
+    .hover();
+  await expect(basicPreview.getByRole("heading", { level: 3 })).toHaveText(
+    "Neuro Rehabilitation",
+  );
+  await expect(
+    basicPreview.getByRole("link", { name: "Explore this care" }),
+  ).toHaveAttribute("href", "/basic-services/neuro-rehabilitation");
+
+  // Controls cycling on basic services preview
+  const nextBtn = basicSection.getByRole("button", {
+    name: "Preview next basic service",
+  });
+  await nextBtn.click();
+  await expect(basicPreview.getByRole("heading", { level: 3 })).toHaveText(
+    "PEMF Therapy",
+  );
+  await expect(
+    basicPreview.getByRole("link", { name: "Explore this care" }),
+  ).toHaveAttribute("href", "/basic-services/pemf-therapy");
+
+  // Explore All Basic Services CTA
+  const exploreAllCta = basicSection.getByRole("link", {
+    name: "Explore All Basic Services",
+  });
+  await expect(exploreAllCta).toHaveAttribute("href", "/basic-services");
+  await exploreAllCta.click();
+  await expect(page).toHaveURL(/\/basic-services$/);
+});
+
+test("dedicated basic services page renders 12 services with working catalogue filters", async ({
+  page,
+}) => {
+  await page.goto("/basic-services");
+  await expect(page.locator("h1")).toHaveText(
+    "Essential care for everyday recovery.",
+  );
+
+  const cards = page.locator("#basic-service-directory-results article");
+  await expect(cards).toHaveCount(12);
+
+  // Filter: Physical modalities
+  await page
+    .getByRole("button", { name: "Physical modalities", exact: true })
+    .click();
+  await expect(cards).toHaveCount(6);
+
+  // Filter: Manual & Soft tissue
+  await page
+    .getByRole("button", { name: "Manual & Soft tissue", exact: true })
+    .click();
+  await expect(cards).toHaveCount(4);
+
+  // Filter: Rehabilitation & Movement
+  await page
+    .getByRole("button", { name: "Rehabilitation & Movement", exact: true })
+    .click();
+  await expect(cards).toHaveCount(2);
+
+  // Reset to All
+  await page.getByRole("button", { name: "All", exact: true }).click();
+  await expect(cards).toHaveCount(12);
+
+  // Navigate to an individual basic service detail page
+  const tapingLink = page
+    .locator("#taping")
+    .getByRole("link", { name: "Explore service details" });
+  await tapingLink.click();
+  await expect(page).toHaveURL(/\/basic-services\/taping$/);
+  await expect(page.locator("h1")).toHaveText(
+    "Targeted joint and soft-tissue support during active recovery.",
+  );
+  await expect(
+    page.getByRole("link", { name: "Basic Services" }),
+  ).toBeVisible();
+});
+
